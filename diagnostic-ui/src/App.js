@@ -1,13 +1,13 @@
 import './App.css';
+import StartStopButton from './components/StartStopButton'; 
 
 function App() {
   return (
     <div className="App">
       <header className="App-Header">
-        <p>
-          Hello World
-        </p>
+          
       </header>
+      <StartStopButton />
     </div>
   );
 }
