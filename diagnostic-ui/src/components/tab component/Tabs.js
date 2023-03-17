@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import FirstTab from "../all tabs/first tab";
+import SecondTab from "../all tabs/second tab";
+
 // Starter code sourced from: https://blog.logrocket.com/how-to-build-tab-component-react/ 
 
 const Tabs = () => {
@@ -12,7 +15,8 @@ const Tabs = () => {
         <li>Tab 2</li>
       </ul>
       <div className="outlet">
-        {/* content will be shown here */}
+        <FirstTab />
+        <SecondTab />
       </div>
     </div>
   );
