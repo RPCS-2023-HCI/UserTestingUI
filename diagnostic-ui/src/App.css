@@ -1,6 +1,70 @@
-.Video-Component {
+.App {
+  display: flex;
   box-sizing: border-box;
-  width: 100px;
-  height: 100px;
+
+  width: 95vw;
+  height: 50vh;
+  margin-top: 3vh;
+  margin-left: auto;
+  margin-right: auto;
+
+  background-color: brown;
+  flex-direction: column;
+
+  align-items: end;
+}
+
+.Video-Component {
+  width: 65%;
+  height: 90%;
   background-color: aquamarine;
+  margin-bottom: auto;
+  margin-right: 2%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: start;
+}
+
+.Video-Toggle {
+  box-sizing: border-box;
+  width: 50%;
+  height: auto;
+  min-height: 40px;
+  margin-top: 0px;
+  margin-right: auto;
+  background: green;
+}
+
+/* Starter code sourced from: https://blog.logrocket.com/how-to-build-tab-component-react/  */
+/* Tab Navigation */
+ul.nav {
+  width: 60%;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #39A2DB;
+  border-radius: 2rem;
+  padding-left: 0px;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+}
+ul.nav li {
+  width: 50%;
+  padding: 1rem;
+}
+
+ul.nav li:nth-child(2) {
+  border-radius: 0;
+  border-bottom-right-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+ul.nav li:hover {
+  background: rgba(50, 224, 196, 0.15);
+}
+ul.nav li.active {
+  background: #39A2DB;
 }

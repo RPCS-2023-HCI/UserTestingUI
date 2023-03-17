@@ -1,12 +1,14 @@
 import './App.css';
+import Tabs from "./components/tab component/Tabs";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-Header">
-        <div className='Video-Component'>
+    <div className='App'>
+      <div className='Video-Component'>
+        <div className='Video-Toggle'>
+          <Tabs />
         </div>
-      </header>
+      </div>
     </div>
   );
 }
