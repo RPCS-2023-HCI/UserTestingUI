@@ -37,6 +37,10 @@
   background: green;
 }
 
+.Video-Display {
+  background-color: antiquewhite;
+}
+
 /* Starter code sourced from: https://blog.logrocket.com/how-to-build-tab-component-react/  */
 /* Tab Navigation */
 ul.nav {
