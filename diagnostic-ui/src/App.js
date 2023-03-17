@@ -4,9 +4,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-Header">
-        <p>
-          Hello World
-        </p>
+        <div className='Video-Component'>
+        </div>
       </header>
     </div>
   );
