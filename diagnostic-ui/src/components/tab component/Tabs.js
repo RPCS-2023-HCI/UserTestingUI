@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Starter code sourced from: https://blog.logrocket.com/how-to-build-tab-component-react/ 
 
 const Tabs = () => {
+  const [activeTab, setActiveTab] = useState("tab1");
   return (
     <div className="Tabs">
       {/* Tab nav */}
