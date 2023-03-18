@@ -61,7 +61,7 @@ ul.nav li {
 
   font-size: medium;
   list-style-type: none;
-  background-color: rgb(122, 122, 122);
+  background-color: #00b4d8;
 
   /* border-top-right-radius: 1rem;
   border-top-left-radius: 1rem; */
@@ -74,11 +74,11 @@ ul.nav li {
 } */
 
 ul.nav li:hover {
-  background: #afafb0;
+  background: #48cae4;
   text-decoration: underline;
 }
 ul.nav li.active {
-  background: #cccccd;
+  background: #90e0ef;
   text-decoration: underline;
 }
 
