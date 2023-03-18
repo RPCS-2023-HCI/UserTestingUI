@@ -3,7 +3,7 @@
   box-sizing: border-box;
 
   width: 95vw;
-  height: 50vh;
+  height: 100%;
   margin-top: 3vh;
   margin-left: auto;
   margin-right: auto;
@@ -16,7 +16,8 @@
 
 .Video-Component {
   width: 75%;
-  height: 90%;
+  min-height: 90%;
+  height: fit-content;
   background-color: aquamarine;
   margin-bottom: auto;
   margin-right: 2%;
@@ -29,7 +30,7 @@
 
 .Video-Toggle {
   box-sizing: border-box;
-  width: 50%;
+  width: 100%;
   height: auto;
   min-height: 40px;
   margin-top: 0px;
@@ -37,23 +38,30 @@
   background: green;
 }
 
-.Video-Display {
-  background-color: antiquewhite;
+iframe {
+  width: 80%;
+  min-height: 500px;
 }
-
 /* Starter code sourced from: https://blog.logrocket.com/how-to-build-tab-component-react/  */
 /* Tab Navigation */
 ul.nav {
   box-sizing: border-box;
-  width: 60%;
+  width: fit-content;
   display: flex;
-  align-items: start;
-  @media (max-width: 768px) {
+  justify-content: start;
+  /* @media (max-width: 768px) {
     width: 90%;
-  }
+  } */
+
+  background-color: #39A2DB;
+  margin-top: 0px;
+  padding-left: 0px;
 }
 ul.nav li {
-  width: 50%;
+  width: auto;
+  padding-right: 3%;
+  padding-left: 1%;
+
   list-style-type: none;
   background-color: lightslategray;
 }

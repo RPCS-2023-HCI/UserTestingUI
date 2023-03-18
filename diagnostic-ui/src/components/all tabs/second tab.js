@@ -4,8 +4,14 @@ import React from "react";
 const SecondTab = () => {
   return (
     <div className="Second-Tab">
-      <p>First Tab!! Hurray!!</p>
-      {/* First tab content will go here */}
+     <iframe width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/rUxyKA_-grg" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+      </iframe>
     </div>
   );
 };
