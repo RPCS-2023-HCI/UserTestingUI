@@ -2,7 +2,9 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import DangerousIcon from '@mui/icons-material/Dangerous';
+import MQTTManager from '../MQTTManager/MQTTManager';
 
+/* styles */
 import './StartStopButton.css';
 
 /* 
@@ -11,8 +13,12 @@ import './StartStopButton.css';
 
 function StartStopButton({ toggleDrive }) {
   const [isDriving, setIsDriving] = React.useState(true);
+
   const toggleDriving = () => {
-    setIsDriving((prev) => !prev);
+    setIsDriving((prev) => {
+      MQTTManager.test(prev);
+      return !prev;
+    });
   };
 
   return ( 
