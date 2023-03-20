@@ -7,12 +7,12 @@ Chart.register(...registerables);
 const SERVER = 'https://fwo91hdzog.execute-api.us-east-1.amazonaws.com/test/dynamodbmanager';
 
 function LineChart(props) {
-    const [response, setResponse] = useState({});
+    const [response, setResponse] = useState(null);
 
     useEffect(() => {
         const payload = {
-            "SimulationId": "ExampleGraphTest",
-            "content": ["Speed", "ServoAngle", "Accel"]
+            "SimulationId": props.simulationId,
+            "content": props.dataType
           }
           const data = {
             "operation": "get_simulation",
@@ -37,16 +37,27 @@ function LineChart(props) {
     }, []);
 
     function getLabels() {
-        console.log("response: ", response.Speed["time"]);
-        return response.Speed["time"];
+        if (response === null) {
+            return [];
+        }
+
+        let name = props.dataType;
+        console.log("label: ", response[name]["time"]);
+        return response[name]["time"];
     }
 
     function getDataset() {
+        if (response === null) {
+            return [];
+        }
+
+        let name = props.dataType;
+        console.log("val: ", response[name]["value"]);
         return [
             {
                 id: 1,
-                label: '',
-                data: response.Speed["value"],
+                label: props.dataType,
+                data: response[name]["value"],
             },
         ];
     }
