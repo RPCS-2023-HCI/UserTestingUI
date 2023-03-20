@@ -9,13 +9,9 @@
   margin-right: auto;
 
   background-color: darkgray;
-  flex-direction: column;
+  flex-direction: row;
 
   align-items: end;
-}
-
-.StartStopButton {
-  padding: 10px;
 }
 
 .Video-Component {

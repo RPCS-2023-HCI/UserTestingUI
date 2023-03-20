@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
-import FirstTab from "../all tabs/first tab";
-import SecondTab from "../all tabs/second tab";
+import FirstTab from "../DemoTabs/FirstTab";
+import SecondTab from "../DemoTabs/SecondTab";
 
 // Starter code sourced from: https://blog.logrocket.com/how-to-build-tab-component-react/ 
 
+
+// TODO: Change to MUI Component
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState("tab1");
 

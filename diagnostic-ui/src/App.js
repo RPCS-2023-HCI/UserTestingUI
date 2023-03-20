@@ -1,6 +1,6 @@
 import './App.css';
-import Tabs from "./components/tab component/Tabs";
-import StartStopButton from './components/StartStopButton'; 
+import Tabs from "./components/ViewTabs/ViewTabs";
+import StartStopButton from './components/StartStopButton/StartStopButton'; 
 
 function App() {
   return (
