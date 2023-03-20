@@ -7,6 +7,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, if it's the first time you enter, run:
 
 ### `npm install`
+### `npm install react-fusioncharts --save`
+### `npm install fusioncharts --save`
 
 Then run: 
 

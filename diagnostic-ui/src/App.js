@@ -21,7 +21,7 @@ function App() {
           </Grid>
         </Grid>
         <div style={{ width: '50vw', height: '50vh' }}>
-          <LineChart dataType={"Speed"} simulationId={"ExampleGraphTest"} />
+          <LineChart datavi={"Speed"} simulationId={"ExampleGraphTest"} />
           <LineChart dataType={"EngineTemperature"} simulationId={"ExampleGraphTest"} />
         </div>
         <div className='Graph'>
