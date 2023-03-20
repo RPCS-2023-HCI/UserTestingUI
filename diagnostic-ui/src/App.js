@@ -5,10 +5,9 @@ import Grid from '@mui/material/Grid';
 import LineChart from './components/LineChart';
 import Tabs from "./components/ViewTabs/ViewTabs";
 import StartStopButton from './components/StartStopButton/StartStopButton'; 
-import Navbar from './Navbar';
+import Navbar from './components/Navbar';
 
 function App() {
-
   return (
     <div className='App'>
       <Navbar/>
