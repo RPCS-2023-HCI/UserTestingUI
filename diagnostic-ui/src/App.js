@@ -1,6 +1,7 @@
 import './App.css';
 import Tabs from "./components/ViewTabs/ViewTabs";
 import StartStopButton from './components/StartStopButton/StartStopButton'; 
+import Graphs from "./components/Graphs/Graphs";
 
 function App() {
   return (
@@ -11,6 +12,9 @@ function App() {
       <div className='Video-Component'>
         <div className='Video-Toggle'>
           <Tabs />
+        </div>
+        <div className='Graph'>
+          <Graphs />
         </div>
       </div>
     </div>

@@ -36,6 +36,13 @@
   margin-right: auto;
 }
 
+.Graph {
+  box-sizing: border-box;
+  width: auto;
+  height: auto;
+  margin-right: auto;
+}
+
 /* Starter code sourced from: https://blog.logrocket.com/how-to-build-tab-component-react/  */
 /* Tab Navigation */
 ul.nav {
