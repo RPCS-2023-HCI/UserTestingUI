@@ -12,8 +12,8 @@ function App() {
       </header>
       <StartStopButton />
 
-      <div>
-        <LineChart />
+      <div style={{width: '50vw', height: '50vh'}}>
+        <LineChart/>
       </div>
     </div>
   );
