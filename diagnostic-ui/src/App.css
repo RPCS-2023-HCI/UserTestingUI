@@ -83,3 +83,8 @@ iframe {
   margin-left: auto;
   margin-right: auto;  
 }
+
+iframe {
+  min-width: 65vw;
+  min-height: 500px;
+}
