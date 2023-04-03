@@ -9,13 +9,14 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import { toolbarListItems } from './ToolbarItems';
+import DiagnosticTabs from './Tabs';
+
 
 const drawerWidth = 240;
 
@@ -93,6 +94,12 @@ function Dashboard() {
             >
               <MenuIcon />
             </IconButton>
+            <Box
+              component="img"
+              sx={{ width: 48, height: 48 }}
+              src='/f1tenth-logo.png'
+              alt="logo of F1 Tenth"
+            />
             <Typography
               component="h1"
               variant="h6"
@@ -100,13 +107,13 @@ function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              Diagnostic Dashboard
             </Typography>
-            <IconButton color="inherit">
+            {/* <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -124,9 +131,7 @@ function Dashboard() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {/* {mainListItems}
-            <Divider sx={{ my: 1 }} />
-            {secondaryListItems} */}
+            {toolbarListItems}
           </List>
         </Drawer>
         <Box
@@ -143,40 +148,7 @@ function Dashboard() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  {/* <Chart /> */}
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  {/* <Deposits /> */}
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  {/* <Orders /> */}
-                </Paper>
-              </Grid>
-            </Grid>
+            <DiagnosticTabs/>
           </Container>
         </Box>
       </Box>
