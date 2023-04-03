@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import FirstTab from "../DemoTabs/FirstTab";
-import SecondTab from "../DemoTabs/SecondTab";
+import FirstTab from "../TabContent/DemoFirstTab";
+import SecondTab from "../TabContent/DemoSecondTab";
 
 // Starter code sourced from: https://blog.logrocket.com/how-to-build-tab-component-react/ 
 

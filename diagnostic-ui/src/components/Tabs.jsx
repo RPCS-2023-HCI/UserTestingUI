@@ -5,6 +5,10 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
+// THESE ARE DEMO TABS - CREATE NEW TABS IN ./TabContent AND IMPORT
+import DemoFirstTab from './TabContent/DemoFirstTab';
+import DemoSecondTab from './TabContent/DemoSecondTab';
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -49,20 +53,20 @@ export default function DiagnosticTabs() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="Environment" {...a11yProps(0)} />
+          <Tab label="Sensor Monitor" {...a11yProps(1)} />
+          {/* <Tab label="Item Three" {...a11yProps(2)} /> */}
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Item One
+        <DemoFirstTab/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <DemoSecondTab />
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      {/* <TabPanel value={value} index={2}>
         Item Three
-      </TabPanel>
+      </TabPanel> */}
     </Box>
   );
 }
