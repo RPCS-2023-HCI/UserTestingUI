@@ -17,6 +17,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { toolbarListItems } from './ToolbarItems';
 import DiagnosticTabs from './DiagnosticTabs';
 
+import { red } from '@mui/material/colors';
+
 
 const drawerWidth = 240;
 
@@ -64,7 +66,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const mdTheme = createTheme();
+const mdTheme = createTheme( {
+    palette: {
+      primary: {
+        main: red[500],
+      }
+    },
+  }
+);
 
 function Dashboard() {
   const [open, setOpen] = React.useState(true);

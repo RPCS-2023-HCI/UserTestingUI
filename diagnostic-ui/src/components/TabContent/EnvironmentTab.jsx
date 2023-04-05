@@ -42,9 +42,9 @@ function EnvironmentTab() {
           }}
         >
           <Typography variant="h6">Base Readings (Live)</Typography>
-          Speed: 14 meters/second<br/>
-          Acceleration: 5 meters/second²<br />
-          Direction: 40°<br />
+          Speed: {speed} m/s<br/>
+          Acceleration: {acceleration} m/s²<br />
+          Direction: {direction}°<br />
         </Paper>
       </Grid>
     </Grid>
