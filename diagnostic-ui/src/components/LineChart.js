@@ -3,6 +3,8 @@ import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import { registerables } from 'chart.js';
 
+//TODO: This seems to no longer work.
+
 Chart.register(...registerables);
 const SERVER = 'https://fwo91hdzog.execute-api.us-east-1.amazonaws.com/test/dynamodbmanager';
 
