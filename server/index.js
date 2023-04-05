@@ -61,7 +61,7 @@ connection.subscribe("#", mqtt.QoS.AtLeastOnce, (topic, payload, dup, qos, retai
   for(let userId in clients) {
     let client = clients[userId];
     if(client.readyState === ws.WebSocket.OPEN) {
-      client.send(JSON.stringify({"data":payload}));
+      client.send(payload);
     }
   }
 }).then(() => {console.log("sub ok");}).catch((error) => {console.log("sUB error: " + error); });

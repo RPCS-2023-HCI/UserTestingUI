@@ -15,7 +15,7 @@ function ConsoleLog() {
 
   useEffect(() => {
     if (lastMessage !== null) {
-      setMessageHistory((prev) => prev.concat(JSON.parse(lastMessage)));
+      setMessageHistory((prev) => prev.concat(lastMessage));
     }
   }, [lastMessage, setMessageHistory]);
 
@@ -24,7 +24,7 @@ function ConsoleLog() {
       <h2>Recent messages</h2>
       <ul>
         {messageHistory.map((message, idx) => (
-          <span key={idx}>{message ? message.data : null}</span>
+          <li key={idx}>{message ? message.data : null}</li>
         ))}
       </ul>
     </div>
