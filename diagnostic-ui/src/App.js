@@ -6,6 +6,7 @@ import LineChart from './components/LineChart';
 import Tabs from "./components/ViewTabs/ViewTabs";
 import StartStopButton from './components/StartStopButton/StartStopButton'; 
 import Navbar from './components/Navbar';
+import ConsoleLog from './components/ConsoleLog/ConsoleLog';
 
 function App() {
   return (
@@ -20,10 +21,11 @@ function App() {
             <Tabs />
           </Grid>
         </Grid>
-        <div style={{ width: '50vw', height: '50vh' }}>
+        <div style={{ width: '50vw', height: '80vh' }}>
           <LineChart dataType={"Speed"} simulationId={"ExampleGraphTest"} />
           <LineChart dataType={"EngineTemperature"} simulationId={"ExampleGraphTest"} />
         </div>
+        <ConsoleLog />
       </Container>
     </div>
 
