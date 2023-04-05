@@ -15,7 +15,7 @@ import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { toolbarListItems } from './ToolbarItems';
-import DiagnosticTabs from './Tabs';
+import DiagnosticTabs from './DiagnosticTabs';
 
 
 const drawerWidth = 240;

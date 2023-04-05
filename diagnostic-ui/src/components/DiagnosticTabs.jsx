@@ -9,6 +9,9 @@ import Box from '@mui/material/Box';
 import DemoFirstTab from './TabContent/DemoFirstTab';
 import DemoSecondTab from './TabContent/DemoSecondTab';
 
+// TABS
+import EnvironmentTab from './TabContent/EnvironmentTab';
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -59,7 +62,7 @@ export default function DiagnosticTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <DemoFirstTab/>
+        <EnvironmentTab />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <DemoSecondTab />
