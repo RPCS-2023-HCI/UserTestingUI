@@ -66,10 +66,38 @@ class GPSMap extends Component {
     }
   };
   
+  fetchGPSData() {
+    const SERVER = 'https://fwo91hdzog.execute-api.us-east-1.amazonaws.com/test/dynamodbmanager';
+
+    const payload = {
+        "Key": {
+            "id": this.props.simID
+        },
+      }
+      const data = {
+        "operation": "read",
+        "payload": payload
+      }
+    
+      fetch(SERVER, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+        .then(data => {
+            // console.log('Success:', data);
+            this.setState({ points: data["Object"]["Item"]["gps"] });
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+  }
 
   plotGPSData() {
-    const gpsData = this.props.gpsData;
-    this.setState({ points: gpsData });
+    this.fetchGPSData();
   }
 
   render() {
