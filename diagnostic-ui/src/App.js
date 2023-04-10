@@ -24,6 +24,9 @@ function App() {
           <LineChart dataType={"Speed"} simulationId={"ExampleGraphTest"} />
           <LineChart dataType={"EngineTemperature"} simulationId={"ExampleGraphTest"} />
         </div>
+        <object classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921" id="vlc" width="640" height="480">
+          <embed type="application/x-vlc-plugin" name="vlc" width="640" height="480" />
+        </object>
       </Container>
     </div>
 
