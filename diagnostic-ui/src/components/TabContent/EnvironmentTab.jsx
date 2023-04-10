@@ -4,10 +4,17 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
 function EnvironmentTab() {
+  // BASE DATA
   const [speed, setSpeed] = React.useState('N/A');
   const [acceleration, setAcceleration] = React.useState('N/A');
   const [direction, setDirection] = React.useState('N/A');
 
+  // DETAIL DATA
+  const [yaw, setYaw] = React.useState('N/A');
+  const [roll, setRoll] = React.useState('N/A');
+  const [pitch, setPitch] = React.useState('N/A');
+
+  // BASE DATA HANDLERS
   const handleSpeedChange = (event, newSpeed) => {
     setSpeed(newSpeed);
   };
@@ -16,6 +23,17 @@ function EnvironmentTab() {
   };
   const handleDirectionChange = (event, newDirection) => {
     setDirection(newDirection);
+  };
+
+  //DETAIL DATA HANDLERS
+  const handleYawChange = (event, newYaw) => {
+    setSpeed(newYaw);
+  };
+  const handleRollChange = (event, newRoll) => {
+    setSpeed(newRoll);
+  };
+  const handlePitchChange = (event, newPitch) => {
+    setSpeed(newPitch);
   };
 
   return ( 
@@ -30,6 +48,7 @@ function EnvironmentTab() {
           }}
         >
           <Typography variant="h6">Camera Feed</Typography>
+          - Anishwar's Streaming Component Goes Here -
         </Paper>
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
@@ -46,6 +65,36 @@ function EnvironmentTab() {
           Acceleration: {acceleration} m/s²<br />
           Direction: {direction}°<br />
         </Paper>
+      </Grid>
+
+      <Grid item xs={12} md={6} lg={6}>
+        <Paper
+          sx={{
+            p: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            height: 240,
+          }}
+        >
+          <Typography variant="h6">Detailed Readings</Typography>
+          Yaw: {yaw}°<br />
+          Roll: {roll}°<br />
+          Pitch: {pitch}°<br />
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={6} lg={6}>
+        <Paper
+          sx={{
+            p: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            height: 240,
+          }}
+        >
+          <Typography variant="h6">Position Tracking</Typography>
+          - Data Analysis GPS Component Goes Here -
+        </Paper>
+
       </Grid>
     </Grid>
   );
