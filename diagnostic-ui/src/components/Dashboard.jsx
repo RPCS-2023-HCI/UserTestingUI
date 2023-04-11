@@ -2,11 +2,13 @@ import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack'
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import DiagnosticTabs from './DiagnosticTabs';
+import TabSidebar from './TabSidebar'
 
 import { red } from '@mui/material/colors';
 
@@ -57,9 +59,18 @@ function Dashboard() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <DiagnosticTabs/>
-          </Container>
+          <Stack 
+            direction="row"
+            sx={{
+              height: '100vh',
+              overflow: 'auto',
+            }}
+          >
+            <TabSidebar />
+            <Container maxWidth="lg" sx={{ mt: 4}}>
+              <DiagnosticTabs />
+            </Container>
+          </Stack>
         </Box>
       </Box>
     </ThemeProvider>
