@@ -1,16 +1,30 @@
 import './App.css';
 import React from 'react';
-import Dashboard from './components/Dashboard';
-import GPSMap from './components/GPSMap';
-import LineChart from './components/LineChart';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import DashboardWrapper from './components/DashboardWrapper';
+import DiagnosticTabs from './components/Tabs';
 import SimulationAnalysisPage from './components/SimulationAnalysisPage';
 
 function App() {
   
   return (
     <div className='App'>
-      <Dashboard/>
-      <SimulationAnalysisPage/>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <DashboardWrapper content={<DiagnosticTabs/>}/>
+            }
+          />
+          <Route
+            path="/past-test"
+            element={
+              <DashboardWrapper content={<SimulationAnalysisPage/>}/>
+            }
+          />
+        </Routes>
+      </Router>
     </div>
 
   );
