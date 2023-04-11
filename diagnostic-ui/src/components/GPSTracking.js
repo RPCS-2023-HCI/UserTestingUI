@@ -26,6 +26,11 @@ class GPSMap extends Component {
     const { currentIndex, points } = this.state;
     const ctx = this.mapRef.current.getContext('2d');
     const scale = 5000;
+    
+    if (points[currentIndex] === undefined) {
+      return;
+    }
+
     const data = points[currentIndex].split(',');
     const lat = parseFloat(data[2]);
     const lng = parseFloat(data[4]);
