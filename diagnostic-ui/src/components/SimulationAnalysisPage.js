@@ -1,6 +1,7 @@
 import {Row, Col, Container, Card} from 'react-bootstrap';
 import LineChart from './LineChart';
-import GPSMap from './GPSTracking';
+import GPSMap from './GPSMap';
+import GPSTrackingWithButton from './GPSTrackingWithButton';
 
 function SimulationAnalysisPage() {
   return (
@@ -15,7 +16,8 @@ function SimulationAnalysisPage() {
                 </Card>
             </Row>
             <Row>
-                <GPSMap simID={"sim1"}/>
+                {/* <GPSMap simID={"sim1"}/> */}
+                <GPSTrackingWithButton/>
             </Row>
         </Col>
     </Container>

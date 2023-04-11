@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import Dashboard from './components/Dashboard';
-import GPSMap from './components/GPSTracking';
+import GPSMap from './components/GPSMap';
 import LineChart from './components/LineChart';
 import SimulationAnalysisPage from './components/SimulationAnalysisPage';
 

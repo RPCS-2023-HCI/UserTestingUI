@@ -7,30 +7,30 @@ class GPSMap extends Component {
     this.state = {
       points: [],
       currentIndex: 0,
-      isDrawing: true,
     };
   }
 
   componentDidMount() {
     this.plotGPSData();
-    setTimeout(() => {
+    if (this.props.isDrawing) {
       requestAnimationFrame(this.animatePoints);
-    }, 500);
+    }
   }
-
-  componentWillUnmount() {
-    this.setState({ isDrawing: false });
+    
+  componentDidUpdate(prevProps) {
+    if (prevProps.isDrawing !== this.props.isDrawing) {
+      if (this.props.isDrawing) {
+        requestAnimationFrame(this.animatePoints);
+      } else {
+        cancelAnimationFrame(this.requestID);
+      }
+    }
   }
 
   animatePoints = () => {
     const { currentIndex, points } = this.state;
     const ctx = this.mapRef.current.getContext('2d');
-    const scale = 5000;
-    
-    if (points[currentIndex] === undefined) {
-      return;
-    }
-
+    const scale = 4000;
     const data = points[currentIndex].split(',');
     const lat = parseFloat(data[2]);
     const lng = parseFloat(data[4]);
@@ -64,10 +64,12 @@ class GPSMap extends Component {
     }
   
     if (currentIndex < points.length - 1) {
-      this.setState({ currentIndex: currentIndex + 1 });
       setTimeout(() => {
-        requestAnimationFrame(this.animatePoints);
-      }, 500);
+        this.setState({ currentIndex: currentIndex + 1 });
+        if (this.props.isDrawing) {
+          this.requestID = requestAnimationFrame(this.animatePoints);
+        }
+      }, 1000); // Change this value to adjust the delay between points
     }
   };
   
@@ -106,7 +108,7 @@ class GPSMap extends Component {
   }
 
   render() {
-    return <canvas ref={this.mapRef} width={800} height={800} />;
+    return <canvas ref={this.mapRef} width={400} height={400} />;
   }
 }
 
