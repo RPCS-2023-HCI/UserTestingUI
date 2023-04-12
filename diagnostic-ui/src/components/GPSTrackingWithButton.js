@@ -7,7 +7,7 @@ function GPSTrackingWithButton(props) {
 
     return (
         <div>
-            <Card style={{width: '40vw', height: '60vh', backgroundColor: '#f8f9fa'}}>
+            <Card style={{width: '40vw', height: '60vh'}}>
                 <GPSMap simID={"sim1"} isDrawing={isTracking}/>
             </Card>
             <Button onClick={() => setIsTracking(true)}>Start</Button>
