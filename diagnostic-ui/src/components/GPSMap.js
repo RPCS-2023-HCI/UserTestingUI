@@ -72,39 +72,9 @@ class GPSMap extends Component {
       }, 1000); // Change this value to adjust the delay between points
     }
   };
-  
-  fetchGPSData() {
-    const SERVER = 'https://fwo91hdzog.execute-api.us-east-1.amazonaws.com/test/dynamodbmanager';
-
-    const payload = {
-        "Key": {
-            "id": this.props.simID
-        },
-      }
-      const data = {
-        "operation": "read",
-        "payload": payload
-      }
-    
-      fetch(SERVER, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(response => response.json())
-        .then(data => {
-            // console.log('Success:', data);
-            this.setState({ points: data["Object"]["Item"]["gps"] });
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-  }
 
   plotGPSData() {
-    this.fetchGPSData();
+    this.setState({ points: this.props.data["Object"]["Item"]["gps"] });
   }
 
   render() {
