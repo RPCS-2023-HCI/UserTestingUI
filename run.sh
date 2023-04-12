@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # build react app
 cd diagnostic-ui
