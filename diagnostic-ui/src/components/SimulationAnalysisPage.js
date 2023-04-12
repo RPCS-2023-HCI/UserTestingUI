@@ -5,6 +5,7 @@ import GPSTrackingWithButton from './GPSTrackingWithButton';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
+import Alert from '@mui/material/Alert';
 
 const SERVER = 'https://fwo91hdzog.execute-api.us-east-1.amazonaws.com/test/dynamodbmanager';
 
@@ -89,8 +90,8 @@ function SimulationAnalysisPage() {
                     </Button>
                 </Row>
                 {notFound && (
-                    <Row>
-                        <p>Simulation not found</p>
+                    <Row style={{marginTop: '1vh', width: '60vw'}}>
+                        <Alert severity="error">Simulation not found, try different simulation Id!</Alert>
                     </Row>
                 )}
                 {!notFound && showGraphs && (
