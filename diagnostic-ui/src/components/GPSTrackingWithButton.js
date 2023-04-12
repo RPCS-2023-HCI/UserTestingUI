@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import Button from '@mui/material/Button';
 import GPSMap from './GPSMap';
 
 function GPSTrackingWithButton(props) {
@@ -11,8 +12,8 @@ function GPSTrackingWithButton(props) {
             <Card style={{width: '40vw', height: '60vh'}}>
                 <GPSMap data={props.data} isDrawing={isTracking}/>
             </Card>
-            <Button onClick={() => setIsTracking(true)}>Start</Button>
-            <Button onClick={() => setIsTracking(false)}>Stop</Button>
+            <Button variant="outlined" onClick={() => setIsTracking(true)}>Start</Button>
+            <Button variant="outlined" onClick={() => setIsTracking(false)}>Stop</Button>
         </div>
     );
 }
