@@ -7,6 +7,7 @@ function GPSTrackingWithButton(props) {
 
     return (
         <div>
+            <h4 style={{textAlign: 'center'}}>GPS Tracking Trace of the Car</h4>
             <Card style={{width: '40vw', height: '60vh'}}>
                 <GPSMap simID={"sim1"} isDrawing={isTracking}/>
             </Card>

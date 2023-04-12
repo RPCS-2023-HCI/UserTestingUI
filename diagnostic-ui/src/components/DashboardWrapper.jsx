@@ -103,6 +103,7 @@ function DashboardWrapper(props) {
               color="inherit"
               noWrap
               sx={{ flexGrow: 1 }}
+              style={{ marginLeft: '10px' }}
             >
               Diagnostic Dashboard
             </Typography>
