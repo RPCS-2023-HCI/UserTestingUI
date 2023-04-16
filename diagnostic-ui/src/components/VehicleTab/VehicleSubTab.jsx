@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
-function TabEnvironment() {
+function VehicleSubTab() {
   // BASE DATA
   const [speed, setSpeed] = React.useState('N/A');
   const [acceleration, setAcceleration] = React.useState('N/A');
@@ -100,4 +100,4 @@ function TabEnvironment() {
   );
 }
 
-export default TabEnvironment;
+export default VehicleSubTab;

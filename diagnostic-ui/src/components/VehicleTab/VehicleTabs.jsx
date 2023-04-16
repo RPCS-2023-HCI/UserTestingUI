@@ -6,8 +6,9 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 // TABS
-import TabEnvironment from './TabEnvironment';
-import TabConsolelog from './TabConsoleLog';
+import VehicleSubTab from './VehicleSubTab';
+import EnvSubTab from './EnvSubTab';
+import ConsoleSubTab from './ConsoleSubTab';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -53,20 +54,20 @@ export default function VehicleTabs() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Environment" {...a11yProps(0)} />
-          <Tab label="Sensor Monitor" {...a11yProps(1)} />
-          {/* <Tab label="Item Three" {...a11yProps(2)} /> */}
+          <Tab label="Vehicle" {...a11yProps(0)} />
+          <Tab label="Environment" {...a11yProps(1)} />
+          <Tab label="Console Log" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <TabEnvironment />
+        <VehicleSubTab />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <TabConsolelog />
+        <EnvSubTab />
       </TabPanel>
-      {/* <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel> */}
+      <TabPanel value={value} index={2}>
+        <ConsoleSubTab/>
+      </TabPanel>
     </Box>
   );
 }

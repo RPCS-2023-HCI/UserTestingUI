@@ -7,7 +7,7 @@ import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import DiagnosticTabs from './VehicleContent/VehicleTabs';
+import DiagnosticTabs from './VehicleTab/VehicleTabs';
 import TabSidebar from './TabSidebar'
 
 import { red } from '@mui/material/colors';
