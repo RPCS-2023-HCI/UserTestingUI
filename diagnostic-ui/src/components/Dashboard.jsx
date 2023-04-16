@@ -7,7 +7,7 @@ import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import DiagnosticTabs from './DiagnosticTabs';
+import DiagnosticTabs from './VehicleContent/VehicleTabs';
 import TabSidebar from './TabSidebar'
 
 import { red } from '@mui/material/colors';
@@ -46,31 +46,9 @@ function Dashboard() {
             </Typography>
           </Toolbar>
         </MuiAppBar>
-        <Box
-          component="main"
-          sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            height: '100vh',
-            overflow: 'auto',
-          }}
-        >
+        <Box>
           <Toolbar />
-          <Stack 
-            direction="row"
-            sx={{
-              height: '100vh',
-              overflow: 'auto',
-            }}
-          >
-            <TabSidebar />
-            <Container maxWidth="lg" sx={{ mt: 4}}>
-              <DiagnosticTabs />
-            </Container>
-          </Stack>
+          <TabSidebar />
         </Box>
       </Box>
     </ThemeProvider>

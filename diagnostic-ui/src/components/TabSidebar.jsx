@@ -4,6 +4,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import VehicleTabs from './VehicleContent/VehicleTabs';
+
 import FolderIcon from '@mui/icons-material/Folder';
 import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 
@@ -63,8 +66,16 @@ export default function VerticalTabs() {
         <Tab icon={<FolderIcon />} aria-label="folder" {...a11yProps(1)} />
 
       </Tabs>
+
       <TabSidebar value={value} index={0}>
-        Vehicle Status
+        <Stack direction="row">
+          <Box sx={{ width: '15%' }}>
+            Vehicle Status
+          </Box>
+          <Box sx={{ width: '85%' }}>
+            <VehicleTabs />
+          </Box>
+        </Stack>
       </TabSidebar>
       <TabSidebar value={value} index={1}>
         Files

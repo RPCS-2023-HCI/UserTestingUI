@@ -5,12 +5,9 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-// THESE ARE DEMO TABS - CREATE NEW TABS IN ./TabContent AND IMPORT
-import DemoFirstTab from './TabContent/DemoFirstTab';
-import DemoSecondTab from './TabContent/DemoSecondTab';
-
 // TABS
-import EnvironmentTab from './TabContent/EnvironmentTab';
+import TabEnvironment from './TabEnvironment';
+import TabConsolelog from './TabConsoleLog';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,7 +42,7 @@ function a11yProps(index) {
   };
 }
 
-export default function DiagnosticTabs() {
+export default function VehicleTabs() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -62,10 +59,10 @@ export default function DiagnosticTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <EnvironmentTab />
+        <TabEnvironment />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <DemoSecondTab />
+        <TabConsolelog />
       </TabPanel>
       {/* <TabPanel value={value} index={2}>
         Item Three

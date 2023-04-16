@@ -2,11 +2,11 @@
 
 import ConsoleLog from "../ConsoleLog/ConsoleLog";
 import React from "react";
-const DemoSecondTab = () => {
+const TabConsolelog = () => {
   return (
     <div className="Second-Tab">
       <ConsoleLog />
     </div>
   );
 };
-export default DemoSecondTab;
+export default TabConsolelog;
