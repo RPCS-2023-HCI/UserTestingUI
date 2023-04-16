@@ -52,7 +52,11 @@ export default function VerticalTabs() {
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex'}}
+      sx={{ 
+        flexGrow: 1, 
+        bgcolor: 'background.paper', 
+        display: 'flex',
+      }}
     >
       <Tabs
         orientation="vertical"
@@ -60,7 +64,7 @@ export default function VerticalTabs() {
         value={value}
         onChange={handleChange}
         aria-label="Vertical Tabs"
-        sx={{ borderRight: 1, borderColor: 'divider' }}
+        sx={{ borderRight: 1, borderColor: 'divider'}}
       >
         <Tab icon={<DirectionsCarFilledIcon />} aria-label="car"{...a11yProps(0)} />
         <Tab icon={<FolderIcon />} aria-label="folder" {...a11yProps(1)} />
@@ -78,7 +82,9 @@ export default function VerticalTabs() {
         </Stack>
       </TabSidebar>
       <TabSidebar value={value} index={1}>
-        Files
+        <Box sx={{ width: '15%' }}>
+          Files
+        </Box>
       </TabSidebar>
     </Box>
   );
