@@ -5,12 +5,10 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-// THESE ARE DEMO TABS - CREATE NEW TABS IN ./TabContent AND IMPORT
-import DemoFirstTab from './TabContent/DemoFirstTab';
-import DemoSecondTab from './TabContent/DemoSecondTab';
-
 // TABS
-import EnvironmentTab from './TabContent/EnvironmentTab';
+import VehicleSubTab from './VehicleSubTab';
+import EnvSubTab from './EnvSubTab';
+import ConsoleSubTab from './ConsoleSubTab';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,7 +43,7 @@ function a11yProps(index) {
   };
 }
 
-export default function DiagnosticTabs() {
+export default function VehicleTabs() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -53,23 +51,23 @@ export default function DiagnosticTabs() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '80vw' , height: '100vh'}}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Environment" {...a11yProps(0)} />
-          <Tab label="Sensor Monitor" {...a11yProps(1)} />
-          {/* <Tab label="Item Three" {...a11yProps(2)} /> */}
+          <Tab label="Vehicle" {...a11yProps(0)} />
+          <Tab label="Environment" {...a11yProps(1)} />
+          <Tab label="Console Log" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <EnvironmentTab />
+        <VehicleSubTab />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <DemoSecondTab />
+        <EnvSubTab />
       </TabPanel>
-      {/* <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel> */}
+      <TabPanel value={value} index={2}>
+        <ConsoleSubTab/>
+      </TabPanel>
     </Box>
   );
 }

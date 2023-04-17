@@ -4,6 +4,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import VehicleTabs from './VehicleTab/VehicleTabs';
+
 import FolderIcon from '@mui/icons-material/Folder';
 import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 
@@ -49,7 +52,11 @@ export default function VerticalTabs() {
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex'}}
+      sx={{ 
+        flexGrow: 1, 
+        bgcolor: 'background.paper', 
+        display: 'flex',
+      }}
     >
       <Tabs
         orientation="vertical"
@@ -57,17 +64,27 @@ export default function VerticalTabs() {
         value={value}
         onChange={handleChange}
         aria-label="Vertical Tabs"
-        sx={{ borderRight: 1, borderColor: 'divider' }}
+        sx={{ borderRight: 1, borderColor: 'divider'}}
       >
         <Tab icon={<DirectionsCarFilledIcon />} aria-label="car"{...a11yProps(0)} />
         <Tab icon={<FolderIcon />} aria-label="folder" {...a11yProps(1)} />
 
       </Tabs>
+
       <TabSidebar value={value} index={0}>
-        Vehicle Status
+        <Stack direction="row">
+          <Box sx={{ width: '15%' }}>
+            Vehicle Status
+          </Box>
+          <Box sx={{ width: '85%' }}>
+            <VehicleTabs />
+          </Box>
+        </Stack>
       </TabSidebar>
       <TabSidebar value={value} index={1}>
-        Files
+        <Box sx={{ width: '15%' }}>
+          Files
+        </Box>
       </TabSidebar>
     </Box>
   );
