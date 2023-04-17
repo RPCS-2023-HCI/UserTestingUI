@@ -14,7 +14,7 @@ const FirstTab = () => {
       </iframe> */}
 
     {/* <embed type="video/webm" src="udp://@0.0.0.0:5000" width="400" height="300">  */}
-      <video src="rtsp://@0.0.0.0:5000" brightsign-properties="StreamTimeout:0;StreamLowLatency:0;"> 
+      <video src="udp://@0.0.0.0:5000" brightsign-properties="StreamTimeout:0;StreamLowLatency:0;"> 
       </video>
     </div>
   );
