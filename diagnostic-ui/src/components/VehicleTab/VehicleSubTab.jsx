@@ -2,6 +2,7 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import VideoComponent from '../VideoComponent';
 
 function VehicleSubTab() {
   // BASE DATA
@@ -44,11 +45,11 @@ function VehicleSubTab() {
             p: 2,
             display: 'flex',
             flexDirection: 'column',
-            height: 240,
+            height: 400,
           }}
         >
           <Typography variant="h6">Camera Feed</Typography>
-          - Anishwar's Streaming Component Goes Here -
+          <VideoComponent/>
         </Paper>
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
@@ -57,7 +58,7 @@ function VehicleSubTab() {
             p: 2,
             display: 'flex',
             flexDirection: 'column',
-            height: 240,
+            height: 400,
           }}
         >
           <Typography variant="h6">Base Readings (Live)</Typography>
