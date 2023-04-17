@@ -2,6 +2,7 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import VideoComponent from '../VideoComponent';
 
 function VehicleSubTab() {
   // BASE DATA
@@ -48,17 +49,7 @@ function VehicleSubTab() {
           }}
         >
           <Typography variant="h6">Camera Feed</Typography>
-          <div className="First-Tab">
-            <iframe width="560" 
-                height="315" 
-                src="https://www.youtube.com/embed/KLOceDeegVs" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-              </iframe>
-            {/* <embed type="video/webm" src="udp://@0.0.0.0:5000" width="400" height="300">  */}
-          </div>
+          <VideoComponent/>
         </Paper>
       </Grid>
       <Grid item xs={12} md={4} lg={3}>
