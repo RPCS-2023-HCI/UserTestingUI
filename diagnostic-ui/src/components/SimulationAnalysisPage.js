@@ -180,7 +180,10 @@ function SimulationAnalysisPage() {
                                     sx={{ width: 300, marginLeft: '1vw' }}
                                     style={{ marginTop: '-2vh' }}
                                     renderInput={(params) => <TextField {...params} label="Simulation ID" variant="standard"/>}
-                                    onChange={(e, value) => setCompareId(value || '')}
+                                    onChange={(e, value) => {
+                                        setCompareId(value || '');
+                                        setCompareResponse(null);
+                                    }}
                                 />
                             </Row>
                             {compareResponse !== null && (
