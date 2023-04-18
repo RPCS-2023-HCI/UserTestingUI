@@ -90,7 +90,7 @@ class GPSMap extends Component {
     }
   
     // Draw rectangle
-    ctx.fillStyle = 'green';
+    ctx.fillStyle = 'steelblue';
     ctx.fillRect(rectX - rectSize / 2, rectY - rectSize / 2, rectSize, rectSize);
   
     // Draw black lines
