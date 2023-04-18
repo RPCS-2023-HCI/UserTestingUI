@@ -186,13 +186,15 @@ function SimulationAnalysisPage() {
                                     }}
                                 />
                             </Row>
-                            {compareResponse !== null && (
-                                <VisualizationCard data={compareResponse} notFound={notFound}/>
+                            {compareResponse !== null ? (
+                                <VisualizationCard data={compareResponse} notFound={notFound} />
+                            ) : (
+                                <VisualizationCard data={response} notFound={notFound} />
                             )}
                         </Card>
 
-                        <Card style={{width: '76vw', marginTop: '5vh', height: '90vh', borderRadius: '10px'}}>
-                            <Row style={{marginTop: '10vh', width: '35vw'}}>
+                        <Card style={{width: '38vw', marginTop: '5vh', height: '64vh', borderRadius: '10px'}}>
+                            <Row style={{width: '38vw'}}>
                                 <GPSTrackingWithButton data={response} />
                             </Row>
                         </Card>
