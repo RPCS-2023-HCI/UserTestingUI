@@ -8,6 +8,7 @@ import Alert from '@mui/material/Alert';
 import Autocomplete from '@mui/material/Autocomplete';
 import VisualizationCard from './VisualizationCard';
 import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
 
 
 const SERVER = 'https://fwo91hdzog.execute-api.us-east-1.amazonaws.com/test/dynamodbmanager';
@@ -19,12 +20,20 @@ function SimulationAnalysisPage() {
     const [response, setResponse] = useState(null);
     const [notFound, setNotFound] = useState(false);
     const [allSimIds, setAllSimIds] = useState([]);
+    const [compareResponse, setCompareResponse] = useState(null);
+    const [compareId, setCompareId] = useState('');
 
     useEffect(() => {
         if (simulationId !== '') {
             fetchData();
         }
     }, [simulationId]);
+
+    useEffect(() => {
+        if (compareId !== '') {
+            fetchCompareData();
+        }
+    }, [compareId]);
 
     useEffect(() => {
         if (response !== null) {
@@ -94,10 +103,42 @@ function SimulationAnalysisPage() {
         });
     }    
 
+    function fetchCompareData(){
+        const payload = {
+            "Key": {
+                "id": compareId
+            },
+        }
+        const data = {
+            "operation": "read",
+            "payload": payload
+        }
+    
+        fetch(SERVER, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            setCompareResponse(data);
+            console.log(data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    } 
+
     const handleSearch = () => {
         setNotFound(false);
         setShowGraphs(false);
         setSimulationId(input);
+    }
+
+    const handleCompareSearch = () => {
+        setCompareId(input);
     }
 
     return (
@@ -137,8 +178,35 @@ function SimulationAnalysisPage() {
                 )}
                 {!notFound && showGraphs && (
                     <Container>
-                        <VisualizationCard data={response} notFound={notFound} cardTitle={"Current Test: " + simulationId}/>
-                        <VisualizationCard data={response} notFound={notFound} cardTitle={"Compare To Test: " + simulationId}/>
+                        <Card style={{width: '76vw', marginTop: '5vh', height: '50vh', borderRadius: '10px'}}>
+                            <Row style={{width: '85vw', display: 'flex', marginTop: '2.5vh'}}>
+                                <Typography variant="button" style={{marginLeft: '1.5vw', fontSize: '1.2vw', color: '#1870d5'}}>
+                                    {"Current Test: " + simulationId}
+                                </Typography>
+                            </Row>
+                            <VisualizationCard data={response} notFound={notFound}/>
+                        </Card>
+
+                        
+                        <Card style={{width: '76vw', marginTop: '5vh', height: '50vh', borderRadius: '10px'}}>
+                            <Row style={{width: '85vw', display: 'flex', marginTop: '2.5vh'}}>
+                                <Typography variant="button" style={{marginLeft: '1.5vw', fontSize: '1.2vw', color: '#1870d5'}}>
+                                    Compare To Test: 
+                                </Typography>
+                                <Autocomplete
+                                    disablePortal
+                                    options={allSimIds}
+                                    sx={{ width: 300, marginLeft: '1vw' }}
+                                    style={{ marginTop: '-2vh' }}
+                                    renderInput={(params) => <TextField {...params} label="Simulation ID" variant="standard"/>}
+                                    onChange={(e, value) => setCompareId(value)}
+                                />
+                            </Row>
+                            {compareResponse !== null && (
+                                <VisualizationCard data={compareResponse} notFound={notFound}/>
+                            )}
+                        </Card>
+
                         <Card style={{width: '76vw', marginTop: '5vh', height: '90vh', borderRadius: '10px'}}>
                             <Row style={{marginTop: '10vh', width: '35vw'}}>
                                 <GPSTrackingWithButton data={response} />
