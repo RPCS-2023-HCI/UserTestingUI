@@ -78,7 +78,7 @@ function SimulationAnalysisPage() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             setResponse(data);
             if (data["Object"]["Item"] === undefined) {
                 setNotFound(true);
