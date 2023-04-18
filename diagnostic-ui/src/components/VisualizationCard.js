@@ -17,10 +17,10 @@ function VisualizationCard(props) {
     return (
         <Row style={{width: '85vw', display: 'flex', marginTop: '1vh'}}>
             <Row style={{width: '33vw', marginLeft: '2vw'}}>
-                <LineChart dataType={"Speed"} data={data} title={"Speed of the Car Run Over Time"}/>
+                <LineChart dataType={"Speed"} data={data} title={"Speed of the Car Run Over Time"} abnormalPoints={[0, 11, 15]}/>
             </Row>
             <Row style={{width: '33vw', marginLeft: '6vw'}}>
-                <LineChart dataType={"Accel"} data={data} title={"Acceleration of the Car Run Over Time"}/>
+                <LineChart dataType={"Accel"} data={data} title={"Acceleration of the Car Run Over Time"} abnormalPoints={[3, 12, 15]}/>
             </Row>
         </Row>
     );

@@ -14,28 +14,39 @@ function LineChart(props) {
 
   function getDataset() {
     let name = props.dataType;
+  
+    const abnormalPoints = new Set(props.abnormalPoints); // Use a Set to track abnormal points
+  
+    // Assign different point properties depending on whether the index is in abnormalPoints
+    const pointBackgroundColors = props.data["Object"]["Item"][name]["value"].map((_, index) =>
+      abnormalPoints.has(index) ? 'rgba(208, 49, 45, 0.7)' : 'rgba(85, 170, 255, 0.7)',
+    );
+    const pointBorderColors = props.data["Object"]["Item"][name]["value"].map((_, index) =>
+      abnormalPoints.has(index) ? 'rgba(208, 49, 45, 0.7)' : 'rgba(85, 170, 255, 0.7)',
+    );
+    const pointRadius = props.data["Object"]["Item"][name]["value"].map((_, index) =>
+      abnormalPoints.has(index) ? 4 : 3,
+    );
+  
     return [
       {
-        id: 2, 
-        yAxisID: 'y2',
-        label: 'Abnormal',
-        data: [{ x: 0, y: 0 }],
-        borderColor: 'rgba(208, 49, 45, 0.7)', 
-        backgroundColor: 'rgba(208, 49, 45, 0.7)',
-        pointBorderColor: 'rgba(208, 49, 45, 0.7)', 
-        pointBackgroundColor: 'rgba(208, 49, 45, 0.7)', 
-        pointRadius: 3,
-      },
-      {
-        id: 1, 
+        id: 1,
         yAxisID: 'y',
         label: props.dataType,
         data: props.data["Object"]["Item"][name]["value"],
-        borderColor: 'rgba(85, 170, 255, 0.7)', 
-        backgroundColor: 'rgba(85, 170, 255, 0.4)', 
-        pointBorderColor: 'rgba(85, 170, 255, 0.7)',
-        pointBackgroundColor: 'rgba(85, 170, 255, 0.7)',
-        pointRadius: 3,
+        borderColor: 'rgba(85, 170, 255, 0.7)', // Add alpha value
+        backgroundColor: 'rgba(85, 170, 255, 0.4)', // Add alpha value
+        pointBorderColor: pointBorderColors,
+        pointBackgroundColor: pointBackgroundColors,
+        pointRadius: pointRadius,
+      },
+      {
+        id: 2,
+        label: 'Abnormal',
+        data: [],
+        backgroundColor: 'rgba(208, 49, 45, 0.7)', // Add alpha value
+        borderWidth: 0, 
+        pointRadius: 0, 
       },
     ];
   }
@@ -48,30 +59,6 @@ function LineChart(props) {
         data={{
           labels: getLabels(),
           datasets: getDataset(),
-        }}
-        options={{
-          scales: {
-            y: {
-              type: 'linear',
-              display: true,
-              position: 'left',
-              id: 'y',
-            },
-            y2: {
-              type: 'linear',
-              display: false,
-              position: 'right',
-              id: 'y2',
-              grid: {
-                drawOnChartArea: false,
-              },
-            },
-          },
-          plugins: {
-            legend: {
-              display: true,
-            },
-          },
         }}
       />
     </Container>
