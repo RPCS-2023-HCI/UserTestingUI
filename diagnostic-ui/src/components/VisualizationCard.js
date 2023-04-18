@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 
 function VisualizationCard(props) {
-    const { data, notFound } = props;
+    const { data, notFound, cardTitle } = props;
 
     if (notFound) {
         return (
@@ -20,7 +20,7 @@ function VisualizationCard(props) {
         <Card style={{width: '76vw', marginTop: '5vh', height: '50vh', borderRadius: '10px'}}>
             <Row style={{width: '85vw', display: 'flex', marginTop: '1.5vh'}}>
                 <Typography variant="button" style={{marginLeft: '1.5vw', fontSize: '1.2vw', color: '#1870d5'}}>
-                    Visualization of the Car Run
+                    {cardTitle}
                 </Typography>
             </Row>
             <Row style={{width: '85vw', display: 'flex', marginTop: '1vh'}}>

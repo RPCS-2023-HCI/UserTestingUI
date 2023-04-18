@@ -136,7 +136,7 @@ function SimulationAnalysisPage() {
                 )}
                 {!notFound && showGraphs && (
                     <Container>
-                        <VisualizationCard data={response} notFound={notFound} />
+                        <VisualizationCard data={response} notFound={notFound} cardTitle={"Current Test: " + simulationId} />
                         <Row style={{marginTop: '10vh', width: '35vw'}}>
                             <GPSTrackingWithButton data={response} />
                         </Row>
