@@ -9,22 +9,22 @@ Chart.register(...registerables);
 function LineChart(props) {
   function getLabels() {
     let name = props.dataType;
-    return props.data["Object"]["Item"][name]["time"];
+    return props.data[name]["time"];
   }
 
   function getDataset() {
     let name = props.dataType;
   
-    const abnormalPoints = new Set(props.abnormalPoints); // Use a Set to track abnormal points
+    const abnormalPoints = new Set(props.data[name]["anomaly"]);
   
     // Assign different point properties depending on whether the index is in abnormalPoints
-    const pointBackgroundColors = props.data["Object"]["Item"][name]["value"].map((_, index) =>
+    const pointBackgroundColors = props.data[name]["value"].map((_, index) =>
       abnormalPoints.has(index) ? 'rgba(208, 49, 45, 0.7)' : 'rgba(85, 170, 255, 0.7)',
     );
-    const pointBorderColors = props.data["Object"]["Item"][name]["value"].map((_, index) =>
+    const pointBorderColors = props.data[name]["value"].map((_, index) =>
       abnormalPoints.has(index) ? 'rgba(208, 49, 45, 0.7)' : 'rgba(85, 170, 255, 0.7)',
     );
-    const pointRadius = props.data["Object"]["Item"][name]["value"].map((_, index) =>
+    const pointRadius = props.data[name]["value"].map((_, index) =>
       abnormalPoints.has(index) ? 4 : 3,
     );
   
@@ -33,7 +33,7 @@ function LineChart(props) {
         id: 1,
         yAxisID: 'y',
         label: props.dataType,
-        data: props.data["Object"]["Item"][name]["value"],
+        data: props.data[name]["value"],
         borderColor: 'rgba(85, 170, 255, 0.7)', // Add alpha value
         backgroundColor: 'rgba(85, 170, 255, 0.4)', // Add alpha value
         pointBorderColor: pointBorderColors,

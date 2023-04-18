@@ -49,18 +49,17 @@ function SimulationAnalysisPage() {
 
     const fetchData = useCallback(() => {
         const payload = {
-            "operation": "read",
+            "operation": "get_simulation",
             "payload": {
-                "Key": {
-                    "id": simulationId
-                }
+                "SimulationId": simulationId,
+                "anomalyDetection": 1
             }
         };
     
         postFetchRequest(payload)
         .then(data => {
             setResponse(data);
-            if (data["Object"]["Item"] === undefined) {
+            if (data === undefined) {
                 setNotFound(true);
                 setShowGraphs(false);
             } else {
@@ -72,11 +71,10 @@ function SimulationAnalysisPage() {
 
     const fetchCompareData = useCallback(() => {
         const payload = {
-            "operation": "read",
+            "operation": "get_simulation",
             "payload": {
-                "Key": {
-                    "id": compareId
-                }
+                "SimulationId": compareId,
+                "anomalyDetection": 1
             }
         };
     
@@ -103,7 +101,7 @@ function SimulationAnalysisPage() {
 
     useEffect(() => {
         if (response !== null) {
-            if (response["Object"]["Item"] === undefined) {
+            if (response === undefined) {
                 setNotFound(true);
             }
         }

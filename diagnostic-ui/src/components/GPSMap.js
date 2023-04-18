@@ -113,7 +113,7 @@ class GPSMap extends Component {
   };
 
   plotGPSData() {
-    this.setState({ points: this.props.data["Object"]["Item"]["gps"] });
+    this.setState({ points: this.props.data["gps"] });
   }
 
   render() {
