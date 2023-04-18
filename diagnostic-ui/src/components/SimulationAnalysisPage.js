@@ -189,8 +189,7 @@ function SimulationAnalysisPage() {
                                     disablePortal
                                     options={allSimIds}
                                     sx={{ width: 300, marginLeft: '1vw' }}
-                                    style={{ marginTop: '-2vh' }}
-                                    renderInput={(params) => <TextField {...params} label="Simulation ID" variant="standard"/>}
+                                    renderInput={(params) => <TextField {...params} variant="standard"/>}
                                     onChange={(e, value) => {
                                         setCompareId(value || '');
                                         setCompareResponse(null);
