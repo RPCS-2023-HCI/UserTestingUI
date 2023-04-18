@@ -78,6 +78,7 @@ function SimulationAnalysisPage() {
         })
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             setResponse(data);
             if (data["Object"]["Item"] === undefined) {
                 setNotFound(true);
@@ -115,9 +116,9 @@ function SimulationAnalysisPage() {
                                 ...params.InputProps,
                                 type: 'search',
                                 }}
-                                onChange={(e) => setInput(e.target.value)}
                             />
                         )}
+                        onChange={(e, value) => setInput(value)}
                     />
                     <Button 
                         style={{marginLeft: '3vw', width: '10vw', height: '3vh', marginTop: '3vh'}}
