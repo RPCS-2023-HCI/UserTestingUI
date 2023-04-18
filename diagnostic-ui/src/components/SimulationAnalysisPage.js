@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import Alert from '@mui/material/Alert';
+import Autocomplete from '@mui/material/Autocomplete';
 
 const SERVER = 'https://fwo91hdzog.execute-api.us-east-1.amazonaws.com/test/dynamodbmanager';
 
@@ -15,6 +16,7 @@ function SimulationAnalysisPage() {
     const [showGraphs, setShowGraphs] = useState(false);
     const [response, setResponse] = useState(null);
     const [notFound, setNotFound] = useState(false);
+    const [allSimIds, setAllSimIds] = useState([]);
 
     useEffect(() => {
         if (simulationId !== '') {
@@ -29,6 +31,32 @@ function SimulationAnalysisPage() {
             }
         }
     }, [response]);
+
+    useEffect(() => {
+        fetchAllSimIds();
+    }, [allSimIds]);
+
+    function fetchAllSimIds(){
+        const data = {
+            "operation": "search_ids"
+        }
+    
+        fetch(SERVER, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // console.log(data);
+            setAllSimIds(data?.IDs || []);
+        })
+        .catch((error) => {
+            // console.error('Error:', error);
+        });
+    }    
 
     function fetchData(){
         const payload = {
@@ -73,13 +101,23 @@ function SimulationAnalysisPage() {
         <Container>
             <Col>
                 <Row style={{width: '80vw', display: 'flex'}}>
-                    <TextField
-                        id="outlined-read-only-input"
-                        label="Simulation ID"
-                        placeholder='Enter Simulation ID'
-                        style={{width: '60vw'}}
-                        variant="standard"
-                        onChange={(e) => setInput(e.target.value)}
+                    <Autocomplete
+                        disableClearable
+                        options={allSimIds}
+                        renderInput={(params) => (
+                            <TextField
+                                variant="standard"
+                                {...params}
+                                label="Simulation ID"
+                                placeholder='Enter Simulation ID'
+                                style={{width: '60vw'}}
+                                InputProps={{
+                                ...params.InputProps,
+                                type: 'search',
+                                }}
+                                onChange={(e) => setInput(e.target.value)}
+                            />
+                        )}
                     />
                     <Button 
                         style={{marginLeft: '3vw', width: '10vw', height: '3vh', marginTop: '3vh'}}
