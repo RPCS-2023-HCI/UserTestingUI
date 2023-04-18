@@ -1,15 +1,15 @@
-import {Row, Col, Container} from 'react-bootstrap';
-import {useEffect, useState} from 'react';
+import { Row, Col, Container } from 'react-bootstrap';
+import { useEffect, useState, useCallback } from 'react';
 import GPSTrackingWithButton from './GPSTrackingWithButton';
+import VisualizationCard from './VisualizationCard';
+
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import Alert from '@mui/material/Alert';
 import Autocomplete from '@mui/material/Autocomplete';
-import VisualizationCard from './VisualizationCard';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
-
 
 const SERVER = 'https://fwo91hdzog.execute-api.us-east-1.amazonaws.com/test/dynamodbmanager';
 
@@ -23,17 +23,82 @@ function SimulationAnalysisPage() {
     const [compareResponse, setCompareResponse] = useState(null);
     const [compareId, setCompareId] = useState('');
 
+    const postFetchRequest = useCallback((payload) => {
+        return fetch(SERVER, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.json());
+    }, []);
+
+    const fetchAllSimIds = useCallback(() => {
+        const data = {
+            "operation": "search_ids"
+        };
+    
+        postFetchRequest(data)
+        .then(data => {
+            setAllSimIds(data?.IDs || []);
+        })
+        .catch((error) => {});
+    }, [postFetchRequest]);
+
+    const fetchData = useCallback(() => {
+        const payload = {
+            "operation": "read",
+            "payload": {
+                "Key": {
+                    "id": simulationId
+                }
+            }
+        };
+    
+        postFetchRequest(payload)
+        .then(data => {
+            setResponse(data);
+            if (data["Object"]["Item"] === undefined) {
+                setNotFound(true);
+                setShowGraphs(false);
+            } else {
+                setShowGraphs(true);
+            }
+        })
+        .catch((error) => {});
+    }, [simulationId, postFetchRequest]);
+
+    const fetchCompareData = useCallback(() => {
+        const payload = {
+            "operation": "read",
+            "payload": {
+                "Key": {
+                    "id": compareId
+                }
+            }
+        };
+    
+        postFetchRequest(payload)
+        .then(data => {
+            setCompareResponse(data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }, [compareId, postFetchRequest]);
+
     useEffect(() => {
         if (simulationId !== '') {
             fetchData();
         }
-    }, [simulationId]);
+    }, [simulationId, fetchData]);
 
     useEffect(() => {
         if (compareId !== '') {
             fetchCompareData();
         }
-    }, [compareId]);
+    }, [compareId, fetchCompareData]);
 
     useEffect(() => {
         if (response !== null) {
@@ -45,91 +110,7 @@ function SimulationAnalysisPage() {
 
     useEffect(() => {
         fetchAllSimIds();
-    }, [allSimIds]);
-
-    function fetchAllSimIds(){
-        const data = {
-            "operation": "search_ids"
-        }
-    
-        fetch(SERVER, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
-            // console.log(data);
-            setAllSimIds(data?.IDs || []);
-        })
-        .catch((error) => {
-            // console.error('Error:', error);
-        });
-    }    
-
-    function fetchData(){
-        const payload = {
-            "Key": {
-                "id": simulationId
-            },
-        }
-        const data = {
-            "operation": "read",
-            "payload": payload
-        }
-    
-        fetch(SERVER, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
-            // console.log(data);
-            setResponse(data);
-            if (data["Object"]["Item"] === undefined) {
-                setNotFound(true);
-                setShowGraphs(false);
-            } else {
-                setShowGraphs(true);
-            }
-        })
-        .catch((error) => {
-            // console.error('Error:', error);
-        });
-    }    
-
-    function fetchCompareData(){
-        const payload = {
-            "Key": {
-                "id": compareId
-            },
-        }
-        const data = {
-            "operation": "read",
-            "payload": payload
-        }
-    
-        fetch(SERVER, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
-            setCompareResponse(data);
-            console.log(data);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    } 
+    }, [fetchAllSimIds]);
 
     const handleSearch = () => {
         setNotFound(false);
