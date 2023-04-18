@@ -11,10 +11,10 @@ function GPSTrackingWithButton(props) {
         <div>
             <Row style={{width: '85vw', display: 'flex', marginTop: '2.5vh'}}>
                 <Typography variant="button" style={{marginLeft: '1.5vw', fontSize: '1.2vw', color: '#1870d5'}}>
-                    GPS Tracking Trace of the Car
+                    Vehicle Path Tracking
                 </Typography>
             </Row>
-            <Card style={{width: '40vw', height: '50vh', margin: 'auto'}}>
+            <Card style={{width: '30vw', height: '50vh', margin: 'auto'}}>
                 <GPSMap data={props.data} isDrawing={isTracking}/>
             </Card>
             <Row style={{display: 'flex', justifyContent: 'right', marginTop: '1vh'}}>

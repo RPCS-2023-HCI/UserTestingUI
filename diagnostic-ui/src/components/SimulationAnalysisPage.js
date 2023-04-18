@@ -10,6 +10,7 @@ import Alert from '@mui/material/Alert';
 import Autocomplete from '@mui/material/Autocomplete';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
+import CameraRecording from './CameraRecoding';
 
 const SERVER = 'https://fwo91hdzog.execute-api.us-east-1.amazonaws.com/test/dynamodbmanager';
 
@@ -159,7 +160,19 @@ function SimulationAnalysisPage() {
                 )}
                 {!notFound && showGraphs && (
                     <Container>
-                        <Card style={{width: '76vw', marginTop: '5vh', height: '50vh', borderRadius: '10px'}}>
+                        <Row style={{width: '76vw', display: 'flex'}}>
+                            <Card style={{width: '45vw', marginTop: '4vh', height: '64vh', borderRadius: '10px', marginRight: '1vw'}}>
+                                <CameraRecording/>
+                            </Card>
+
+                            <Card style={{width: '30vw', marginTop: '4vh', height: '64vh', borderRadius: '10px'}}>
+                                <Row style={{width: '30vw'}}>
+                                    <GPSTrackingWithButton data={response} />
+                                </Row>
+                            </Card>
+                        </Row>
+
+                        <Card style={{width: '76vw', marginTop: '3vh', height: '50vh', borderRadius: '10px'}}>
                             <Row style={{width: '85vw', display: 'flex', marginTop: '2.5vh'}}>
                                 <Typography variant="button" style={{marginLeft: '1.5vw', fontSize: '1.2vw', color: '#1870d5'}}>
                                     {"Current Test: " + simulationId}
@@ -169,7 +182,7 @@ function SimulationAnalysisPage() {
                         </Card>
 
                         
-                        <Card style={{width: '76vw', marginTop: '5vh', height: '50vh', borderRadius: '10px'}}>
+                        <Card style={{width: '76vw', marginTop: '3vh', height: '50vh', borderRadius: '10px'}}>
                             <Row style={{width: '85vw', display: 'flex', marginTop: '2.5vh'}}>
                                 <Typography variant="button" style={{marginLeft: '1.5vw', fontSize: '1.2vw', color: '#1870d5'}}>
                                     Compare To Test: 
@@ -191,12 +204,6 @@ function SimulationAnalysisPage() {
                             ) : (
                                 <VisualizationCard data={response} notFound={notFound} />
                             )}
-                        </Card>
-
-                        <Card style={{width: '38vw', marginTop: '5vh', height: '64vh', borderRadius: '10px'}}>
-                            <Row style={{width: '38vw'}}>
-                                <GPSTrackingWithButton data={response} />
-                            </Row>
                         </Card>
                     </Container>
                 )}
