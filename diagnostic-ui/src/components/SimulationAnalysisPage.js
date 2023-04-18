@@ -1,6 +1,5 @@
-import {Row, Col, Container, Card} from 'react-bootstrap';
+import {Row, Col, Container} from 'react-bootstrap';
 import {useEffect, useState} from 'react';
-import LineChart from './LineChart';
 import GPSTrackingWithButton from './GPSTrackingWithButton';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -8,6 +7,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import Alert from '@mui/material/Alert';
 import Autocomplete from '@mui/material/Autocomplete';
 import VisualizationCard from './VisualizationCard';
+import Card from '@mui/material/Card';
+
 
 const SERVER = 'https://fwo91hdzog.execute-api.us-east-1.amazonaws.com/test/dynamodbmanager';
 
@@ -136,10 +137,13 @@ function SimulationAnalysisPage() {
                 )}
                 {!notFound && showGraphs && (
                     <Container>
-                        <VisualizationCard data={response} notFound={notFound} cardTitle={"Current Test: " + simulationId} />
-                        <Row style={{marginTop: '10vh', width: '35vw'}}>
-                            <GPSTrackingWithButton data={response} />
-                        </Row>
+                        <VisualizationCard data={response} notFound={notFound} cardTitle={"Current Test: " + simulationId}/>
+                        <VisualizationCard data={response} notFound={notFound} cardTitle={"Compare To Test: " + simulationId}/>
+                        <Card style={{width: '76vw', marginTop: '5vh', height: '90vh', borderRadius: '10px'}}>
+                            <Row style={{marginTop: '10vh', width: '35vw'}}>
+                                <GPSTrackingWithButton data={response} />
+                            </Row>
+                        </Card>
                     </Container>
                 )}
             </Col>
