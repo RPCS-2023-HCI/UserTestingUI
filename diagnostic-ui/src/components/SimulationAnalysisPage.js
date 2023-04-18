@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import Alert from '@mui/material/Alert';
 import Autocomplete from '@mui/material/Autocomplete';
+import VisualizationCard from './VisualizationCard';
 
 const SERVER = 'https://fwo91hdzog.execute-api.us-east-1.amazonaws.com/test/dynamodbmanager';
 
@@ -135,14 +136,7 @@ function SimulationAnalysisPage() {
                 )}
                 {!notFound && showGraphs && (
                     <Container>
-                        <Row style={{width: '80vw', display: 'flex', marginTop: '5vh'}}>
-                            <Card style={{width: '35vw'}}>
-                                <LineChart dataType={"Speed"} data={response} title={"Speed of the Car Run Over Time"}/>
-                            </Card>
-                            <Card style={{width: '35vw', marginLeft: '6vw'}}>
-                                <LineChart dataType={"Accel"} data={response} title={"Acceleration of the Car Run Over Time"}/>
-                            </Card>
-                        </Row>
+                        <VisualizationCard data={response} notFound={notFound} />
                         <Row style={{marginTop: '10vh', width: '35vw'}}>
                             <GPSTrackingWithButton data={response} />
                         </Row>
