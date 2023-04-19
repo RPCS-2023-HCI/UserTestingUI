@@ -47,6 +47,7 @@ wsServer.on('connection', socket => {
     delete clients[userId];
   });
 
+  // TODO: do we want to broadcast back up to AWS?
   socket.on('message', message => console.log(message));
 });
 

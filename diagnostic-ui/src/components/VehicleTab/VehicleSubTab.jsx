@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import VideoComponent from '../VideoComponent';
+import ThreeViewer from '../ThreeViewer';
 
 function VehicleSubTab() {
   // BASE DATA
@@ -81,6 +82,7 @@ function VehicleSubTab() {
           Yaw: {yaw}°<br />
           Roll: {roll}°<br />
           Pitch: {pitch}°<br />
+          <ThreeViewer />
         </Paper>
       </Grid>
       <Grid item xs={12} md={6} lg={6}>
