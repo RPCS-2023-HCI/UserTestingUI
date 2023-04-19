@@ -12,13 +12,10 @@ const app = express();
 
 // aws stuff
 function aws_setup() {
-  let config_builder = iot.AwsIotMqttConnectionConfigBuilder.new_mtls_builder_from_path('./secrets/hello_world_demo_thing.cert.pem', './secrets/hello_world_demo_thing.private.key');
-  // let config_builder = iot.AwsIotMqttConnectionConfigBuilder.new_mtls_builder_from_path('./secrets/hci_ui.cert.pem', './secrets/hci_ui.private.key');
-  config_builder.with_client_id('hello_world_demo_thing');
-  // config_builder.with_client_id('hci_ui');
+  let config_builder = iot.AwsIotMqttConnectionConfigBuilder.new_mtls_builder_from_path('./secrets/hci_ui.cert.pem', './secrets/hci_ui.private.key');
+  config_builder.with_client_id('hci_ui');
   config_builder.with_endpoint('aicgt013q5xy-ats.iot.us-east-1.amazonaws.com');
   config_builder.with_certificate_authority_from_path(undefined, './secrets/root-CA.crt');
-  // config_builder.with_certificate_authority_from_path(undefined, './secrets/root-CA.crt');
 
   const config = config_builder.build();
   const client = new mqtt.MqttClient();
