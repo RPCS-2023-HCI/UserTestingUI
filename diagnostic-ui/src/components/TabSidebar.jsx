@@ -6,10 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import VehicleTabs from './VehicleTab/VehicleTabs';
-import StatusBlock from './StatusBlock';
-import SensorToggle from './SensorToggle';
-import TestName from './TestName';
-import StartStopButton from './StartStopButton/StartStopButton';
+import VehicleStatus from './VehicleSidebar/VehicleStatus';
 
 import FolderIcon from '@mui/icons-material/Folder';
 import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
@@ -78,41 +75,15 @@ export default function VerticalTabs() {
       <TabSidebar value={value} index={0}>
         <Stack direction="row">
           <Box sx={{ width: '15%' }}>
-          <span style={{ fontWeight: 'bold' }}>Vehicle Status</span>
-            <StatusBlock label="Battery" sensorOn="true"/>
-            <StatusBlock label="LiDAR" sensorOn="false"/>
-            <StatusBlock label="GPS" sensorOn="false"/>
-            <StatusBlock label="GNSS" sensorOn="true"/>
-            <br></br>
-            <span style={{ fontWeight: 'bold' }}>Environment Status</span>
-            <StatusBlock label="Ultrasonic Sensor 1-A" sensorOn="true"/>
-            <StatusBlock label="Ultrasonic Sensor 1-B" sensorOn="true"/>
-            <StatusBlock label="Ultrasonic Sensor 2-A" sensorOn="true"/>
-            <StatusBlock label="Ultrasonic Sensor 2-B" sensorOn="true"/>
-            <StatusBlock label="Ultrasonic Sensor 3-A" sensorOn="true"/>
-            <StatusBlock label="Ultrasonic Sensor 3-B" sensorOn="true"/>
-            <StatusBlock label="Ultrasonic Sensor 4-A" sensorOn="true"/>
-            <StatusBlock label="Ultrasonic Sensor 4-B" sensorOn="true"/>
-            <br></br>
-            <span style={{ fontWeight: 'bold' }}>Obstacle Configuration</span>
-            <SensorToggle label="Sector 1 Obstacle"/>
-            <SensorToggle label="Sector 2 Obstacle"/>
-            <SensorToggle label="Sector 3 Obstacle"/>
-            <SensorToggle label="Sector 4 Obstacle"/>
-            <br></br>
-            <span style={{ fontWeight: 'bold' }}>Test Name:</span>
-            <TestName/>
-            <br></br>
-            <br></br>
-            <StartStopButton/>
+            <VehicleStatus/>
           </Box>
-          <Box sx={{ width: '85%' }}>
+          <Box sx={{ width: '80%' }}>
             <VehicleTabs />
           </Box>
         </Stack>
       </TabSidebar>
       <TabSidebar value={value} index={1}>
-        <Box sx={{ width: '15%' }}>
+        <Box sx={{ width: '20%' }}>
           Files
         </Box>
       </TabSidebar>
