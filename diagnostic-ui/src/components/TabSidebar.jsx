@@ -7,6 +7,9 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import VehicleTabs from './VehicleTab/VehicleTabs';
 import StatusBlock from './StatusBlock';
+import SensorToggle from './SensorToggle';
+import TestName from './TestName';
+import StartStopButton from './StartStopButton/StartStopButton';
 
 import FolderIcon from '@mui/icons-material/Folder';
 import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
@@ -92,6 +95,16 @@ export default function VerticalTabs() {
             <StatusBlock label="Ultrasonic Sensor 4-B" sensorOn="true"/>
             <br></br>
             <span style={{ fontWeight: 'bold' }}>Obstacle Configuration</span>
+            <SensorToggle label="Sector 1 Obstacle"/>
+            <SensorToggle label="Sector 2 Obstacle"/>
+            <SensorToggle label="Sector 3 Obstacle"/>
+            <SensorToggle label="Sector 4 Obstacle"/>
+            <br></br>
+            <span style={{ fontWeight: 'bold' }}>Test Name:</span>
+            <TestName/>
+            <br></br>
+            <br></br>
+            <StartStopButton/>
           </Box>
           <Box sx={{ width: '85%' }}>
             <VehicleTabs />
