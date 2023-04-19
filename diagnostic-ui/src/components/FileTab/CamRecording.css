@@ -1,0 +1,17 @@
+.video-recording {
+    width: 100%;
+    height: 100%;
+    padding: 2.5%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.video-recording .video {
+    flex-grow: 1;
+}
+
+.video-recording iframe {
+    width: 100%;
+    height: 100%;
+}
