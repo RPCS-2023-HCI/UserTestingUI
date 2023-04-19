@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import VehicleTabs from './VehicleTab/VehicleTabs';
+import RunButton from './RunButton'
 
 import FolderIcon from '@mui/icons-material/Folder';
 import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
@@ -75,6 +76,7 @@ export default function VerticalTabs() {
         <Stack direction="row">
           <Box sx={{ width: '15%' }}>
             Vehicle Status
+            <RunButton/>
           </Box>
           <Box sx={{ width: '85%' }}>
             <VehicleTabs />
@@ -85,6 +87,7 @@ export default function VerticalTabs() {
         <Box sx={{ width: '15%' }}>
           Files
         </Box>
+
       </TabSidebar>
     </Box>
   );
