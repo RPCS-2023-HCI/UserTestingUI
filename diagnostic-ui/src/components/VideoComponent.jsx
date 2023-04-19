@@ -4,7 +4,7 @@ import React from 'react';
 function VideoComponent() {
   return (
     <div className="First-Tab">
-      <iframe allow="camera; microphone; fullscreen; display-capture; autoplay" src="https://meet.jit.si/RPCS-test"></iframe>
+      <iframe title="live-video" allow="camera; microphone; fullscreen; display-capture; autoplay" src="https://meet.jit.si/RPCS-test"></iframe>
     </div>
   );
 }
