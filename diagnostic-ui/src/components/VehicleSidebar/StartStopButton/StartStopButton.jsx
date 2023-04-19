@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import DangerousIcon from '@mui/icons-material/Dangerous';
 
-import './StartStopButton.css';
+// import './StartStopButton.css';
 
 /* 
  * Toggles the car to start and stop running.

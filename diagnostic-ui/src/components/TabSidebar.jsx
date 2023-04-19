@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import VehicleTabs from './VehicleTab/VehicleTabs';
+import VehicleStatus from './VehicleSidebar/VehicleStatus';
 import SimulationAnalysisPage from './FileTab/SimulationAnalysisPage';
 
 import FolderIcon from '@mui/icons-material/Folder';
@@ -75,15 +76,15 @@ export default function VerticalTabs() {
       <TabSidebar value={value} index={0}>
         <Stack direction="row">
           <Box sx={{ width: '15%' }}>
-            Vehicle Status
+            <VehicleStatus/>
           </Box>
-          <Box sx={{ width: '85%' }}>
+          <Box sx={{ width: '80%' }}>
             <VehicleTabs />
           </Box>
         </Stack>
       </TabSidebar>
       <TabSidebar value={value} index={1}>
-        <Box sx={{ width: '15%' }}>
+        <Box sx={{ width: '20%' }}>
           Files
         </Box>
         <Box sx={{ width: '85%' }}>
