@@ -4,12 +4,18 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import VideoComponent from '../VideoComponent';
 import ThreeViewer from '../ThreeViewer';
+import useWebSocket from 'react-use-websocket';
+import wscfg from '../../WebSocketConfig';
+import YAML from 'yaml';
+
+const VEHICLE_INFO_TOPIC = 'sensors/core';
 
 function VehicleSubTab() {
   // BASE DATA
   const [speed, setSpeed] = React.useState('N/A');
   const [acceleration, setAcceleration] = React.useState('N/A');
   const [direction, setDirection] = React.useState('N/A');
+  const [charge, setCharge] = React.useState('N/A');
 
   // DETAIL DATA
   const [yaw, setYaw] = React.useState('N/A');
@@ -37,6 +43,34 @@ function VehicleSubTab() {
   const handlePitchChange = (event, newPitch) => {
     setSpeed(newPitch);
   };
+
+  // websocket updates
+  const { sendMessage, lastMessage, readyState } = useWebSocket(wscfg.WS_URL, {
+    share: true
+  });
+
+  React.useEffect(() => {
+    if (lastMessage !== null) {
+      try {
+        let msg = JSON.parse(lastMessage.data);
+        if (msg.topic == VEHICLE_INFO_TOPIC) {
+          let data = YAML.parse(JSON.parse(msg.data));
+          setSpeed((prev) => data.state.speed.toFixed(2));
+          setAcceleration((prev) => {
+            return `${data.state.current_motor}`;
+          });
+          setDirection((prev) => {
+            return `${data.state.duty_cycle}`;
+          });
+          setCharge((prev) => {
+            return `${data.state.charge_drawn}/${data.state.charge_regen}`;
+          });
+        }
+      } catch (e) {
+        console.log("json parse error", e);
+      }
+    }
+  }, [lastMessage, setSpeed, setAcceleration, setDirection, setCharge]);
 
   return ( 
     <Grid container spacing={3}>
@@ -66,6 +100,7 @@ function VehicleSubTab() {
           Speed: {speed} m/s<br/>
           Acceleration: {acceleration} m/s²<br />
           Direction: {direction}°<br />
+          Battery state: {charge}<br />
         </Paper>
       </Grid>
 

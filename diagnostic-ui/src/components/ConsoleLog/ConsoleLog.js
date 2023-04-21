@@ -14,7 +14,7 @@ function ConsoleLog() {
 
   useEffect(() => {
     if (lastMessage !== null) {
-      setMessageHistory((prev) => prev.concat(lastMessage));
+      //setMessageHistory((prev) => prev.concat(lastMessage));
     }
   }, [lastMessage, setMessageHistory]);
 
