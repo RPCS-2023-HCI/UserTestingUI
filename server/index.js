@@ -54,7 +54,7 @@ wsServer.on('connection', socket => {
         let msg = JSON.parse(message);
         if (msg.topic && ('data' in msg)) {
           connection.publish(msg.topic, msg.data, mqtt.QoS.AtLeastOnce)
-            .then(() => {console.log("pub ok");}).catch((error) => {console.log("PUB error: " + error); });
+            .then(() => {}).catch((error) => {console.log("PUB error: " + error); });
         }
     } catch (e) {
         return;
@@ -64,10 +64,10 @@ wsServer.on('connection', socket => {
 
 // mqtt side
 connection.subscribe("#", mqtt.QoS.AtLeastOnce, (topic, payload, dup, qos, retain) => {
-  console.log(`Publish received. topic:"${topic}" dup:${dup} qos:${qos} retain:${retain}`);
+  //console.log(`Publish received. topic:"${topic}" dup:${dup} qos:${qos} retain:${retain}`);
   const decoder = new TextDecoder('utf8');
   payload = {"topic": topic, "data": decoder.decode(payload)};
-  console.log(`Payload: ${payload.data}`);
+  //console.log(`Payload: ${payload.data}`);
 
   // broadcast to all
   for(let userId in clients) {

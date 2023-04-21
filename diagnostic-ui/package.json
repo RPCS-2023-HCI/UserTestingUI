@@ -14,6 +14,7 @@
     "@types/three": "^0.150.1",
     "chart.js": "^4.2.1",
     "express": "^4.18.2",
+    "js-yaml": "^4.1.0",
     "node-http": "0.0.5",
     "react": "^18.2.0",
     "react-bootstrap": "2.7.2",
