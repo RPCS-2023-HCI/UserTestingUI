@@ -7,9 +7,13 @@ import { Container } from 'react-bootstrap';
 Chart.register(...registerables);
 
 function LineChart(props) {
+  function splitTime(timeStamps) {
+    return timeStamps.map((timeStamps) => timeStamps.split("T")[1]);
+  }
+
   function getLabels() {
     let name = props.dataType;
-    return props.data[name]["time"];
+    return splitTime(props.data[name]["time"]);
   }
 
   function getDataset() {

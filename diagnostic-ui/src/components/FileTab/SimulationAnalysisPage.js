@@ -124,7 +124,7 @@ function SimulationAnalysisPage() {
     return (
         <Container>
             <Col>
-                <Row style={{width: '80vw', display: 'flex'}}>
+                <Row style={{width: '100vw', display: 'flex'}}>
                     <Autocomplete
                         disableClearable
                         options={allSimIds}
@@ -134,7 +134,7 @@ function SimulationAnalysisPage() {
                                 {...params}
                                 label="Simulation ID"
                                 placeholder='Enter Simulation ID'
-                                style={{width: '60vw'}}
+                                style={{width: '75vw'}}
                                 InputProps={{
                                 ...params.InputProps,
                                 type: 'search',
@@ -144,7 +144,7 @@ function SimulationAnalysisPage() {
                         onChange={(e, value) => setInput(value)}
                     />
                     <Button 
-                        style={{marginLeft: '3vw', width: '10vw', height: '3vh', marginTop: '3vh'}}
+                        style={{marginLeft: '5vw', width: '10vw', height: '3vh', marginTop: '3vh'}}
                         onClick={handleSearch}
                     >
                         <SearchIcon />
@@ -158,8 +158,8 @@ function SimulationAnalysisPage() {
                 )}
                 {!notFound && showGraphs && (
                     <Container>
-                        <Row style={{width: '81vw', display: 'flex'}}>
-                            <Card style={{width: '50vw', marginTop: '4vh', height: '64vh', borderRadius: '10px', marginRight: '1vw'}}>
+                        <Row style={{width: '100vw', display: 'flex'}}>
+                            <Card style={{width: '60vw', marginTop: '4vh', height: '64vh', borderRadius: '10px', marginRight: '1vw'}}>
                                 <CameraRecording/>
                             </Card>
 
@@ -170,8 +170,8 @@ function SimulationAnalysisPage() {
                             </Card>
                         </Row>
 
-                        <Card style={{width: '81vw', marginTop: '3vh', height: '50vh', borderRadius: '10px'}}>
-                            <Row style={{width: '85vw', display: 'flex', marginTop: '2.5vh'}}>
+                        <Card style={{width: '91vw', marginTop: '3vh', height: '51vh', borderRadius: '10px'}}>
+                            <Row style={{width: '91vw', display: 'flex', marginTop: '2.5vh'}}>
                                 <Typography variant="button" style={{marginLeft: '1.5vw', fontSize: '1.2vw', color: '#1870d5'}}>
                                     {"Current Test: " + simulationId}
                                 </Typography>
@@ -180,8 +180,8 @@ function SimulationAnalysisPage() {
                         </Card>
 
                         
-                        <Card style={{width: '81vw', marginTop: '3vh', height: '50vh', borderRadius: '10px'}}>
-                            <Row style={{width: '85vw', display: 'flex', marginTop: '2.5vh'}}>
+                        <Card style={{width: '91vw', marginTop: '3vh', height: '51vh', borderRadius: '10px'}}>
+                            <Row style={{width: '91vw', display: 'flex', marginTop: '2.5vh'}}>
                                 <Typography variant="button" style={{marginLeft: '1.5vw', fontSize: '1.2vw', color: '#1870d5'}}>
                                     Compare To Test: 
                                 </Typography>

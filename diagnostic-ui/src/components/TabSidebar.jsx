@@ -84,10 +84,7 @@ export default function VerticalTabs() {
         </Stack>
       </TabSidebar>
       <TabSidebar value={value} index={1}>
-        <Box sx={{ width: '20%' }}>
-          Files
-        </Box>
-        <Box sx={{ width: '85%' }}>
+        <Box sx={{ width: '100%' }}>
             <SimulationAnalysisPage />
           </Box>
       </TabSidebar>

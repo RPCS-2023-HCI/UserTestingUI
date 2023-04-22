@@ -6,6 +6,8 @@ import Alert from '@mui/material/Alert';
 function VisualizationCard(props) {
     const { data, notFound } = props;
 
+    console.log(data);
+
     if (notFound) {
         return (
             <Row style={{marginTop: '1vh', width: '60vw'}}>
@@ -15,11 +17,11 @@ function VisualizationCard(props) {
     }
 
     return (
-        <Row style={{width: '85vw', display: 'flex', marginTop: '1vh'}}>
-            <Row style={{width: '33vw', marginLeft: '2vw'}}>
+        <Row style={{width: '85vw', display: 'flex'}}>
+            <Row style={{width: '40vw', marginLeft: '2vw'}}>
                 <LineChart dataType={"Speed"} data={data} title={"Speed of the Car Run Over Time"}/>
             </Row>
-            <Row style={{width: '33vw', marginLeft: '6vw'}}>
+            <Row style={{width: '40vw', marginLeft: '8vw'}}>
                 <LineChart dataType={"Accel"} data={data} title={"Acceleration of the Car Run Over Time"}/>
             </Row>
         </Row>
