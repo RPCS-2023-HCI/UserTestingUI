@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import useWebSocket from 'react-use-websocket';
-
-const WS_URL = 'ws://ec2-3-239-21-165.compute-1.amazonaws.com';
+import wscfg from '../../WebSocketConfig';
 
 function ConsoleLog() {
   const [messageHistory, setMessageHistory] = useState([]);
 
-  const { sendMessage, lastMessage, readyState } = useWebSocket(WS_URL, {
+  const { sendMessage, lastMessage, readyState } = useWebSocket(wscfg.WS_URL, {
     share: true,
     onOpen: () => {
       console.log('WebSocket connection established.');
@@ -15,7 +14,7 @@ function ConsoleLog() {
 
   useEffect(() => {
     if (lastMessage !== null) {
-      setMessageHistory((prev) => prev.concat(lastMessage));
+      //setMessageHistory((prev) => prev.concat(lastMessage));
     }
   }, [lastMessage, setMessageHistory]);
 
