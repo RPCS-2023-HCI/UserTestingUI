@@ -144,7 +144,7 @@ function SimulationAnalysisPage() {
                         onChange={(e, value) => setInput(value)}
                     />
                     <Button 
-                        style={{marginLeft: '3vw', width: '10vw', height: '3vh', marginTop: '3vh'}}
+                        style={{marginLeft: '3vw', width: '10vw', height: '5vh', marginTop: '3vh'}}
                         onClick={handleSearch}
                     >
                         <SearchIcon />
