@@ -170,7 +170,7 @@ function SimulationAnalysisPage() {
                             </Card>
                         </Row>
 
-                        <Card style={{width: '91vw', marginTop: '3vh', height: '51vh', borderRadius: '10px'}}>
+                        <Card style={{width: '91vw', marginTop: '3vh', height: '52vh', borderRadius: '10px'}}>
                             <Row style={{width: '91vw', display: 'flex', marginTop: '2.5vh'}}>
                                 <Typography variant="button" style={{marginLeft: '1.5vw', fontSize: '1.2vw', color: '#1870d5'}}>
                                     {"Current Test: " + simulationId}
@@ -180,7 +180,7 @@ function SimulationAnalysisPage() {
                         </Card>
 
                         
-                        <Card style={{width: '91vw', marginTop: '3vh', height: '51vh', borderRadius: '10px'}}>
+                        <Card style={{width: '91vw', marginTop: '3vh', height: '52vh', borderRadius: '10px'}}>
                             <Row style={{width: '91vw', display: 'flex', marginTop: '2.5vh'}}>
                                 <Typography variant="button" style={{marginLeft: '1.5vw', fontSize: '1.2vw', color: '#1870d5'}}>
                                     Compare To Test: 

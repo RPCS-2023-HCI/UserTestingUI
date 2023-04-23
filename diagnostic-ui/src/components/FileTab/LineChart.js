@@ -76,7 +76,7 @@ function LineChart(props) {
 
   return (
     <Container>
-      <Typography style={{ textAlign: 'center', color: 'grey', marginTop: "1.5vh", fontWeight: "bold", marginBottom: "1vh"}}>
+      <Typography style={{ textAlign: 'center', color: 'grey', marginTop: "1.2vh", fontWeight: "bold", marginBottom: "1vh"}}>
         {props.title}
       </Typography>
       <Line
@@ -86,7 +86,7 @@ function LineChart(props) {
           datasets: getDataset(),
         }}
       />
-      <Typography style={{ textAlign: 'center', color: 'grey', marginTop: "1.3vh", fontSize: "small" }}>
+      <Typography style={{ textAlign: 'center', color: 'grey', marginTop: "1vh", fontSize: "small" }}>
         Min: {props.data[props.dataType]['stats']['minimum']}
         &nbsp; &nbsp;
         Max: {props.data[props.dataType]['stats']['maximum']}
