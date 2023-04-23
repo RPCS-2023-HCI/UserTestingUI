@@ -6,8 +6,6 @@ import Alert from '@mui/material/Alert';
 function VisualizationCard(props) {
     const { data, notFound } = props;
 
-    console.log(data);
-
     if (notFound) {
         return (
             <Row style={{marginTop: '1vh', width: '60vw'}}>
