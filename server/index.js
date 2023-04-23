@@ -24,7 +24,8 @@ function aws_setup() {
 let connection = aws_setup();
 
 connection.connect().catch((error) => { console.log("Connect error: " + error); });
-// connection.publish("rpcs/testing", `hello, world! `, mqtt.QoS.AtLeastOnce).then(() => {console.log("pub ok");}).catch((error) => {console.log("PUB error: " + error); });
+// connection.publish("rpcs/testing", `hello, world! `, mqtt.QoS.AtLeastOnce).then(() => {console.log("pub ok");})
+//.catch((error) => {console.log("PUB error: " + error); });
 
 // express stuff
 app.use(express.static(path.join(__dirname, '../', 'diagnostic-ui', 'build')));
@@ -47,24 +48,45 @@ wsServer.on('connection', socket => {
     delete clients[userId];
   });
 
-  socket.on('message', message => console.log(message));
+  // TODO: do we want to broadcast back up to AWS?
+  socket.on('message', message => {
+    try {
+        let msg = JSON.parse(message);
+        if (msg.topic && ('data' in msg)) {
+          connection.publish(msg.topic, msg.data, mqtt.QoS.AtLeastOnce)
+            .then(() => {}).catch((error) => {console.log("PUB error: " + error); });
+        }
+    } catch (e) {
+        return;
+    }
+  });
 });
 
 // mqtt side
 connection.subscribe("#", mqtt.QoS.AtLeastOnce, (topic, payload, dup, qos, retain) => {
-  console.log(`Publish received. topic:"${topic}" dup:${dup} qos:${qos} retain:${retain}`);
+  //console.log(`Publish received. topic:"${topic}" dup:${dup} qos:${qos} retain:${retain}`);
   const decoder = new TextDecoder('utf8');
-  payload = decoder.decode(payload);
-  console.log(`Payload: ${payload}`);
+  payload = {"topic": topic, "data": decoder.decode(payload)};
+  //console.log(`Payload: ${payload.data}`);
 
   // broadcast to all
   for(let userId in clients) {
     let client = clients[userId];
     if(client.readyState === ws.WebSocket.OPEN) {
-      client.send(payload);
+      client.send(JSON.stringify(payload));
     }
   }
 }).then(() => {console.log("sub ok");}).catch((error) => {console.log("sUB error: " + error); });
+
+// keepalive
+setInterval(() => {
+  for(let userId in clients) {
+    let client = clients[userId];
+    if(client.readyState === ws.WebSocket.OPEN) {
+      client.send("{}");
+    }
+  }
+}, 5000);
 
 // TODO: configurable port
 const server = app.listen(9000);

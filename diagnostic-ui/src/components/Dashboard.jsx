@@ -41,6 +41,7 @@ function Dashboard() {
               color="inherit"
               noWrap
               sx={{ flexGrow: 1 }}
+              style={ {marginLeft: '1.3vw' }}
             >
               Diagnostic Dashboard
             </Typography>

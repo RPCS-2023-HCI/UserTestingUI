@@ -3,13 +3,18 @@ import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import { registerables } from 'chart.js';
 import { Container } from 'react-bootstrap';
+import Typography from '@mui/material/Typography';
 
 Chart.register(...registerables);
 
 function LineChart(props) {
+  function splitTime(timeStamps) {
+    return timeStamps.map((timeStamps) => timeStamps.split("T")[1]);
+  }
+
   function getLabels() {
     let name = props.dataType;
-    return props.data[name]["time"];
+    return splitTime(props.data[name]["time"]);
   }
 
   function getDataset() {
@@ -48,12 +53,32 @@ function LineChart(props) {
         borderWidth: 0, 
         pointRadius: 0, 
       },
+      {
+        id: 3,
+        label: 'Mean',
+        data: Array(props.data[name]["value"].length).fill(props.data[name]['stats']['mean']),
+        borderColor: 'rgba(0, 128, 0, 0.4)',
+        backgroundColor: 'rgba(0, 128, 0, 0.4)', // Use a green color for the background
+        pointRadius: 0,
+        borderDash: [5, 5],
+      },
+      {
+        id: 4,
+        label: 'Median',
+        data: Array(props.data[name]["value"].length).fill(props.data[name]['stats']['median']),
+        borderColor: 'rgba(116,71,0, 0.5)',
+        backgroundColor: 'rgba(116,71,0, 0.5)', // Use a green color for the background
+        pointRadius: 0,
+        borderDash: [5, 5],
+      },
     ];
   }
 
   return (
     <Container>
-      <h4 style={{ textAlign: 'center', color: 'grey' }}>{props.title}</h4>
+      <Typography style={{ textAlign: 'center', color: 'grey', marginTop: "1.2vh", fontWeight: "bold", marginBottom: "1vh"}}>
+        {props.title}
+      </Typography>
       <Line
         datasetIdKey="id"
         data={{
@@ -61,6 +86,15 @@ function LineChart(props) {
           datasets: getDataset(),
         }}
       />
+      <Typography style={{ textAlign: 'center', color: 'grey', marginTop: "1vh", fontSize: "small" }}>
+        Min: {props.data[props.dataType]['stats']['minimum']}
+        &nbsp; &nbsp;
+        Max: {props.data[props.dataType]['stats']['maximum']}
+        &nbsp; &nbsp;
+        Mode: {props.data[props.dataType]['stats']['mode']}
+        &nbsp; &nbsp;
+        Std: {props.data[props.dataType]['stats']['std']}
+      </Typography>
     </Container>
   );
 }
