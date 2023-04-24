@@ -14,9 +14,9 @@ import {
 
 const GROUND_SYS_GPS_TOPIC = "groundsys/gps";
 
-const RenderDot = ({ cx, cy }) => {
+const RenderDot = ({ x, y, degree }) => {
 return (
-    <Dot cx={cx} cy={cy} fill="red" r={15} />
+    <Dot cx={x} cy={y} fill="red" r={15} />
 );
 };
 
