@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import useWebSocket from 'react-use-websocket';
+import wscfg from '../../WebSocketConfig';
 import {
     Dot,
     ScatterChart,
@@ -10,6 +12,7 @@ import {
     ReferenceDot
   } from "recharts";
 
+const GROUND_SYS_GPS_TOPIC = "groundsys/gps";
 
 const RenderDot = ({ cx, cy }) => {
 return (
@@ -18,10 +21,25 @@ return (
 };
 
 function PositionTracking() {
-    const [positionX, setPositionX] = useState(3);
-    const [positionY, setPositionY] = useState(1);
-    let positionData = [{x: positionX, y: positionY}]; //must be in a list format
+    const [positionData, setPositionData] = useState([]);
 
+    // websocket updates
+    const { sendMessage, lastMessage, readyState } = useWebSocket(wscfg.WS_URL, {
+        share: true
+    });
+  
+    React.useEffect(() => {
+        if (lastMessage !== null) {
+            try {
+                let msg = JSON.parse(lastMessage.data);
+                if (msg.topic == GROUND_SYS_GPS_TOPIC) {
+                  let data = JSON.parse(msg.data);
+                  setPositionData((prev) => prev.append(data));
+                }
+            } catch (e) {}
+        }
+    }, [lastMessage, setPositionData]);
+    
     return(
         <ResponsiveContainer width="100%" height="100%">
             <ScatterChart
