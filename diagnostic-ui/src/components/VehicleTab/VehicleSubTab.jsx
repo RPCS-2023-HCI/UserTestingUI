@@ -10,13 +10,21 @@ import YAML from 'yaml';
 import PositionTracking from './PositionTracking';
 
 const VEHICLE_INFO_TOPIC = 'sensors/core';
+const VEHICLE_STEERING_TOPIC = 'sensors/servo_position_command';
+const VEHICLE_BATTERY_TOPIC = 'esp32/vp_pub';
 
 function VehicleSubTab() {
   // BASE DATA
   const [speed, setSpeed] = React.useState('N/A');
-  const [acceleration, setAcceleration] = React.useState('N/A');
-  const [direction, setDirection] = React.useState('N/A');
-  const [charge, setCharge] = React.useState('N/A');
+  const [distTraveled, setDistTraveled] = React.useState('N/A');
+  const [steeringAngle, setAngle] = React.useState('N/A');
+  const [vCell1, setvCell1] = React.useState('N/A');
+  const [vCell2, setvCell2] = React.useState('N/A');
+  const [vCell3, setvCell3] = React.useState('N/A');
+  const [vPack, setvPack] = React.useState('N/A');
+  const [iPack, setiPack] = React.useState('N/A');
+
+
 
   // DETAIL DATA
   const [yaw, setYaw] = React.useState('N/A');
@@ -28,10 +36,10 @@ function VehicleSubTab() {
     setSpeed(newSpeed);
   };
   const handleAccelerationChange = (event, newAcceleration) => {
-    setAcceleration(newAcceleration);
+    setDistTraveled(newAcceleration);
   };
   const handleDirectionChange = (event, newDirection) => {
-    setDirection(newDirection);
+    setAngle(newDirection);
   };
 
   //DETAIL DATA HANDLERS
@@ -57,21 +65,26 @@ function VehicleSubTab() {
         if (msg.topic == VEHICLE_INFO_TOPIC) {
           let data = YAML.parse(JSON.parse(msg.data));
           setSpeed((prev) => data.state.speed.toFixed(2));
-          setAcceleration((prev) => {
-            return `${data.state.current_motor}`;
+          setDistTraveled((prev) => {
+            return `${data.state.distance_traveled}`;
           });
-          setDirection((prev) => {
-            return `${data.state.duty_cycle}`;
-          });
-          setCharge((prev) => {
-            return `${data.state.charge_drawn}/${data.state.charge_regen}`;
-          });
+          // Waiting on car platform team to send us battery state
+        } else if (msg.topic == VEHICLE_STEERING_TOPIC) {
+          let data = YAML.parse(JSON.parse(msg.data));
+          setAngle((prev) => data.data);
+        } else if (msg.topic == VEHICLE_BATTERY_TOPIC) {
+          let data = JSON.parse(msg.data);
+          setvCell1((prev) => data.vCell1);
+          setvCell2((prev) => data.vCell2);
+          setvCell3((prev) => data.vCell3);
+          setvPack((prev) => data.vPack);
+          setiPack((prev) => data.iPack);
         }
       } catch (e) {
         console.log("json parse error", e);
       }
     }
-  }, [lastMessage, setSpeed, setAcceleration, setDirection, setCharge]);
+  }, [lastMessage, setSpeed, setDistTraveled, setAngle, setvCell1, setvCell2, setvCell3, setvPack.apply, setiPack]);
 
   return ( 
     <Grid container spacing={3}>
@@ -99,9 +112,18 @@ function VehicleSubTab() {
         >
           <Typography variant="h6">Base Readings (Live)</Typography>
           Speed: {speed} m/s<br/>
-          Acceleration: {acceleration} m/s²<br />
-          Direction: {direction}°<br />
-          Battery state: {charge}<br />
+          Distance Traveled: {distTraveled}<br />
+          Steering Angle: {steeringAngle}°<br />
+          <br />
+          Battery state:<br />
+          vCell1: {vCell1} V<br />
+          vCell2: {vCell2} V<br />
+          vCell3: {vCell3} V<br />
+          vPack: {vPack} V<br />
+          iPack: {iPack} mA<br />
+
+
+
         </Paper>
       </Grid>
 
