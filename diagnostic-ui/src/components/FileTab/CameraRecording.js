@@ -17,8 +17,8 @@ function CameraRecording() {
         </Row>
         <Row className='video'>
             <iframe 
-                src="https://www.youtube.com/embed/KLOceDeegVs" 
-                title="YouTube video player" 
+                src="https://hcivideos.s3.amazonaws.com/GMT20230320-013245_Recording_2560x1440.mp4" 
+                title="AWS S3 video player" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 allowfullscreen>
