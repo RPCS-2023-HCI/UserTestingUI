@@ -34,7 +34,7 @@ function PositionTracking() {
                 let msg = JSON.parse(lastMessage.data);
                 if (msg.topic == GROUND_SYS_GPS_TOPIC) {
                   let data = JSON.parse(msg.data);
-                  setPositionData((prev) => prev.append(data));
+                  setPositionData((prev) => [data]);
                 }
             } catch (e) {}
         }
