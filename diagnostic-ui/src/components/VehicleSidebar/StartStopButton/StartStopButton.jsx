@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
+import { Box } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import DangerousIcon from '@mui/icons-material/Dangerous';
 import useWebSocket from 'react-use-websocket';
@@ -44,11 +45,20 @@ function StartStopButton({ toggleDrive }) {
   };
 
   return ( 
-    <Button variant="contained" 
+    <Button 
+      variant="contained" 
+      fullWidth={true}
+      sx={{padding: "5px"}}
       onClick={toggleDriving}
     >
       {isDriving ?
-        <div>
+        <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "5px",
+        }}
+        >
           <p>Start</p>
           <PlayArrowIcon
           sx={{
@@ -56,8 +66,14 @@ function StartStopButton({ toggleDrive }) {
             padding: '0px'
           }}
         />
-        </div> :
-        <div>
+        </Box> :
+        <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "5px",
+        }}
+        >
           <p>Stop</p>
           <DangerousIcon
             sx={{
@@ -65,7 +81,7 @@ function StartStopButton({ toggleDrive }) {
               padding: '0px'
           }}
         />
-        </div>}
+        </Box>}
     </Button>
   );
 }
