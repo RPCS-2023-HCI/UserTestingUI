@@ -7,6 +7,7 @@ import ThreeViewer from '../ThreeViewer';
 import useWebSocket from 'react-use-websocket';
 import wscfg from '../../WebSocketConfig';
 import YAML from 'yaml';
+import PositionTracking from './PositionTracking';
 
 const VEHICLE_INFO_TOPIC = 'sensors/core';
 
@@ -126,11 +127,11 @@ function VehicleSubTab() {
             p: 2,
             display: 'flex',
             flexDirection: 'column',
-            height: 240,
+            height: '500px',
           }}
         >
           <Typography variant="h6">Position Tracking</Typography>
-          - Data Analysis GPS Component Goes Here -
+          <PositionTracking />
         </Paper>
 
       </Grid>

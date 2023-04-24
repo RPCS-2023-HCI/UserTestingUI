@@ -17,7 +17,7 @@ function VehicleStatus() {
         <StatusBlock label="Battery" sensorOn="true" />
         <StatusBlock label="LiDAR" sensorOn="false" />
         <StatusBlock label="GPS" sensorOn="false" />
-        <StatusBlock label="GNSS" sensorOn="true" />
+        {/* <StatusBlock label="GNSS" sensorOn="true" /> */}
       </div>
       
       <div>
@@ -43,7 +43,7 @@ function VehicleStatus() {
       <div>
         <span style={{ fontWeight: 'bold' }}>Test Name:</span>
         <TestName />
-
+        <br/>
         <StartStopButton />
       </div>
     </Stack>
