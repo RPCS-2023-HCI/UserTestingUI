@@ -124,7 +124,7 @@ function SimulationAnalysisPage() {
     return (
         <Container>
             <Col>
-                <Row style={{width: '100vw', display: 'flex'}}>
+                <Row style={{width: '91vw', display: 'flex'}}>
                     <Autocomplete
                         disableClearable
                         options={allSimIds}
@@ -158,7 +158,7 @@ function SimulationAnalysisPage() {
                 )}
                 {!notFound && showGraphs && (
                     <Container>
-                        <Row style={{width: '100vw', display: 'flex'}}>
+                        <Row style={{width: '91vw', display: 'flex'}}>
                             <Card style={{width: '60vw', marginTop: '4vh', height: '64vh', borderRadius: '10px', marginRight: '1vw'}}>
                                 <CameraRecording/>
                             </Card>
