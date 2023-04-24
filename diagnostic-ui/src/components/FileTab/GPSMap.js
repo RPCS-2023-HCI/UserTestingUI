@@ -32,46 +32,62 @@ class GPSMap extends Component {
     const ctx = this.mapRef.current.getContext('2d');
     const canvasWidth = ctx.canvas.width;
     const canvasHeight = ctx.canvas.height;
-    this.drawAxis(ctx, canvasWidth, canvasHeight, 10);
+    const margin = 20;
+    this.drawAxis(ctx, canvasWidth, canvasHeight, 10, margin);
   }
   
-  drawAxis = (ctx, canvasWidth, canvasHeight, tickLength) => {
-    const rectSize = 10;
-  
+  drawAxis = (ctx, canvasWidth, canvasHeight, tickLength, margin) => {
+    const rectSize = 15;
+
+    const startX = margin;
+    const startY = canvasHeight - margin;
+    const endX = canvasWidth - margin;
+    const endY = margin;
+
     ctx.beginPath();
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 2;
-  
+    ctx.strokeStyle = 'darkgrey';
+    ctx.lineWidth = 1;
+
     // X-Axis
-    ctx.moveTo(0, canvasHeight);
-    ctx.lineTo(canvasWidth, canvasHeight);
-  
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(endX, startY);
+
     // Y-Axis
-    ctx.moveTo(0, 0);
-    ctx.lineTo(0, canvasHeight);
-  
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(startX, endY);
+
     ctx.stroke();
-  
+
+    const numOfTicks = 7;
+    const xTickInterval = (endX - startX) / numOfTicks;
+    const yTickInterval = (startY - endY) / numOfTicks;
+    
     // X-Axis ticks
-    for (let i = 0; i <= 7; i++) {
-      ctx.moveTo(i * (canvasWidth / 7), canvasHeight);
-      ctx.lineTo(i * (canvasWidth / 7), canvasHeight - tickLength);
+    for (let i = 0; i <= numOfTicks; i++) {
+      ctx.moveTo(startX + i * xTickInterval, startY);
+      ctx.lineTo(startX + i * xTickInterval, startY - tickLength);
     }
   
     // Y-Axis ticks
-    for (let i = 0; i <= 7; i++) {
-      ctx.moveTo(0, canvasHeight - i * (canvasHeight / 7));
-      ctx.lineTo(tickLength, canvasHeight - i * (canvasHeight / 7));
+    for (let i = 0; i <= numOfTicks; i++) {
+      ctx.moveTo(startX, startY - i * yTickInterval);
+      ctx.lineTo(startX + tickLength, startY - i * yTickInterval);
     }
   
     ctx.stroke();
   
     // Draw squares at (0,0), (0,7), (7,0), and (7,7)
+    ctx.font = '12px Arial';
+    ctx.fillStyle = 'black';
+    ctx.fillText('(0, 0)', startX + 8, startY - 14);
+    ctx.fillText('(0, 7)', startX + 18, endY - 2);
+    ctx.fillText('(7, 0)', endX - 24, startY - 14);
+    ctx.fillText('(7, 7)', endX - 40, endY - 2);
     ctx.fillStyle = 'grey';
-    ctx.fillRect((0 * canvasWidth) / 7, canvasHeight - (0 * canvasHeight) / 7 - rectSize / 2, rectSize, rectSize);
-    ctx.fillRect((0 * canvasWidth) / 7, canvasHeight - (7 * canvasHeight) / 7 - rectSize / 2, rectSize, rectSize);
-    ctx.fillRect((7 * canvasWidth) / 7 - rectSize / 2, canvasHeight - (0 * canvasHeight) / 7 - rectSize / 2, rectSize, rectSize);
-    ctx.fillRect((7 * canvasWidth) / 7 - rectSize / 2, canvasHeight - (7 * canvasHeight) / 7 - rectSize / 2, rectSize, rectSize);
+    ctx.fillRect(startX, startY - rectSize / 2, rectSize, rectSize);
+    ctx.fillRect(startX, endY - rectSize / 2, rectSize, rectSize);
+    ctx.fillRect(endX - rectSize / 2, startY - rectSize / 2, rectSize, rectSize);
+    ctx.fillRect(endX - rectSize / 2, endY - rectSize / 2, rectSize, rectSize);
   };
 
   animatePoints = () => {
