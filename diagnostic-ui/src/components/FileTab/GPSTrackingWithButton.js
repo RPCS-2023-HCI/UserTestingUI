@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import { Box } from '@mui/material';
 import GPSMap from './GPSMap';
 import Typography from '@mui/material/Typography';
-import background from './gps-background.jpg';
 
 function GPSTrackingWithButton(props) {
     const [isTracking, setIsTracking] = React.useState(false);
@@ -21,10 +20,7 @@ function GPSTrackingWithButton(props) {
                     Vehicle Path Tracking
                 </Typography>
             </Row>
-            <Card style={{width: '30vw', height: '50vh', margin: 'auto',
-                          backgroundImage: `url(${background})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center',}}>
+            <Card style={{width: '30vw', height: '50vh', margin: 'auto'}}>
                 <GPSMap data={props.data} isDrawing={isTracking}/>
             </Card>
             <Row style={{display: 'flex', justifyContent: 'right', marginTop: '1vh'}}>

@@ -13,6 +13,7 @@ class GPSMap extends Component {
   componentDidMount() {
     this.plotGPSData();
     if (this.props.isDrawing) {
+      this.drawStaticAxis();
       requestAnimationFrame(this.animatePoints);
     }
   }
@@ -27,81 +28,123 @@ class GPSMap extends Component {
     }
   }
 
-  getLatLongBounds(points) {
-    let minLat = Infinity;
-    let maxLat = -Infinity;
-    let minLong = Infinity;
-    let maxLong = -Infinity;
-
-    points.forEach(point => {
-      const data = point.split(',');
-      const lat = parseFloat(data[2]);
-      const long = parseFloat(data[4]);
-      minLat = Math.min(minLat, lat);
-      maxLat = Math.max(maxLat, lat);
-      minLong = Math.min(minLong, long);
-      maxLong = Math.max(maxLong, long);
-    });
-
-    return { minLat, maxLat, minLong, maxLong };
+  drawStaticAxis() {
+    const ctx = this.mapRef.current.getContext('2d');
+    const canvasWidth = ctx.canvas.width;
+    const canvasHeight = ctx.canvas.height;
+    const margin = 20;
+    this.drawAxis(ctx, canvasWidth, canvasHeight, 10, margin);
   }
+  
+  drawAxis = (ctx, canvasWidth, canvasHeight, tickLength, margin) => {
+    const rectSize = 15;
+
+    const startX = margin;
+    const startY = canvasHeight - margin;
+    const endX = canvasWidth - margin;
+    const endY = margin;
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'darkgrey';
+    ctx.lineWidth = 1;
+
+    // X-Axis
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(endX, startY);
+
+    // Y-Axis
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(startX, endY);
+
+    ctx.stroke();
+
+    const numOfTicks = 7;
+    const xTickInterval = (endX - startX) / numOfTicks;
+    const yTickInterval = (startY - endY) / numOfTicks;
+    
+    // X-Axis ticks
+    for (let i = 0; i <= numOfTicks; i++) {
+      ctx.moveTo(startX + i * xTickInterval, startY);
+      ctx.lineTo(startX + i * xTickInterval, startY - tickLength);
+    }
+  
+    // Y-Axis ticks
+    for (let i = 0; i <= numOfTicks; i++) {
+      ctx.moveTo(startX, startY - i * yTickInterval);
+      ctx.lineTo(startX + tickLength, startY - i * yTickInterval);
+    }
+  
+    ctx.stroke();
+  
+    // Draw squares at (0,0), (0,7), (7,0), and (7,7)
+    ctx.font = '12px Arial';
+    ctx.fillStyle = 'black';
+    ctx.fillText('(0, 0)', startX + 8, startY - 14);
+    ctx.fillText('(0, 7)', startX + 18, endY - 2);
+    ctx.fillText('(7, 0)', endX - 24, startY - 14);
+    ctx.fillText('(7, 7)', endX - 40, endY - 2);
+    ctx.fillStyle = 'grey';
+    ctx.fillRect(startX, startY - rectSize / 2, rectSize, rectSize);
+    ctx.fillRect(startX, endY - rectSize / 2, rectSize, rectSize);
+    ctx.fillRect(endX - rectSize / 2, startY - rectSize / 2, rectSize, rectSize);
+    ctx.fillRect(endX - rectSize / 2, endY - rectSize / 2, rectSize, rectSize);
+  };
 
   animatePoints = () => {
-    // handle when canvas is not ready
     if (!this.mapRef.current) {
       this.requestID = requestAnimationFrame(this.animatePoints);
       return;
     }
-  
+
     const { currentIndex, points } = this.state;
     const ctx = this.mapRef.current.getContext('2d');
-    const scale = 10000;
+
+    const [minX, maxX] = [Math.min(...points.map(point => point.X)), Math.max(...points.map(point => point.X))];
+    const [minY, maxY] = [Math.min(...points.map(point => point.Y)), Math.max(...points.map(point => point.Y))];
   
-    const { minLat, maxLat, minLong, maxLong } = this.getLatLongBounds(points);
-    const latCenter = (minLat + maxLat) / 2;
-    const longCenter = (minLong + maxLong) / 2;
-  
-    const data = points[currentIndex].split(',');
-    const lat = parseFloat(data[2]);
-    const lng = parseFloat(data[4]);
-    const centerX = ctx.canvas.width / 2;
-    const centerY = ctx.canvas.height / 2;
-  
-    const xOffset = centerX - longCenter * scale;
-    const yOffset = centerY - latCenter * scale;
-  
+    const xRange = maxX - minX;
+    const yRange = maxY - minY;
+
+    const canvasWidth = ctx.canvas.width;
+    const canvasHeight = ctx.canvas.height;
+
+    const scaleX = (canvasWidth - 50) / xRange; // leave some margin
+    const scaleY = (canvasHeight - 50) / yRange; // leave some margin
+    const scale = Math.min(scaleX, scaleY);
+
+    const xCenter = (minX + maxX) / 2;
+    const yCenter = (minY + maxY) / 2;
+
+    const x = points[currentIndex].X;
+    const y = points[currentIndex].Y;
+
+    const xOffset = canvasWidth / 2 - xCenter * scale;
+    const yOffset = canvasHeight / 2 - yCenter * scale;
+
     const rectSize = 10;
-    const rectX = (lng * scale) + xOffset;
-    const rectY = (lat * scale) + yOffset;
-  
-    // Clear previous rectangle
+    const rectX = x * scale + xOffset;
+    const rectY = y * scale + yOffset;
+
     if (currentIndex > 0) {
-      const prevData = points[currentIndex - 1].split(',');
-      const prevLat = parseFloat(prevData[2]);
-      const prevLng = parseFloat(prevData[4]);
-      const prevRectX = prevLng * scale + xOffset;
-      const prevRectY = prevLat * scale + yOffset;
-      ctx.clearRect(
-        prevRectX - rectSize / 2,
-        prevRectY - rectSize / 2,
-        rectSize,
-        rectSize
-      );
+      const prevX = points[currentIndex - 1].X;
+      const prevY = points[currentIndex - 1].Y;
+      const prevRectX = prevX * scale + xOffset;
+      const prevRectY = prevY * scale + yOffset;
+      ctx.clearRect(prevRectX - rectSize / 2, prevRectY - rectSize / 2, rectSize, rectSize);
     }
-  
-    // Draw rectangle
+
     ctx.fillStyle = 'steelblue';
     ctx.fillRect(rectX - rectSize / 2, rectY - rectSize / 2, rectSize, rectSize);
-  
-    // Draw black lines
+
     if (currentIndex === 0) {
+      this.drawStaticAxis();
       ctx.beginPath();
       ctx.moveTo(rectX, rectY);
     } else {
       ctx.lineTo(rectX, rectY);
       ctx.stroke();
     }
-  
+
     if (currentIndex < points.length - 1) {
       setTimeout(() => {
         this.setState({ currentIndex: currentIndex + 1 });
@@ -113,7 +156,7 @@ class GPSMap extends Component {
   };
 
   plotGPSData() {
-    this.setState({ points: this.props.data["gps"] });
+    this.setState({ points: this.props.data["Position"]["value"] });
   }
 
   render() {
