@@ -84,7 +84,7 @@ function VehicleSubTab() {
         console.log("json parse error", e);
       }
     }
-  }, [lastMessage, setSpeed, setDistTraveled, setAngle, setvCell1, setvCell2, setvCell3, setvPack.apply, setiPack]);
+  }, [lastMessage, setSpeed, setDistTraveled, setAngle, setvCell1, setvCell2, setvCell3, setvPack, setiPack]);
 
   return ( 
     <Grid container spacing={3}>
