@@ -15,8 +15,8 @@ function VehicleStatus() {
       <div>
         <span style={{ fontWeight: 'bold', paddingBottom: '10px'}}>Vehicle Status</span>
         <StatusBlock label="Battery" sensorOn="true" />
-        <StatusBlock label="LiDAR" sensorOn="false" />
-        <StatusBlock label="GPS" sensorOn="false" />
+        <StatusBlock label="LiDAR" sensorOn="true" />
+        <StatusBlock label="GPS" sensorOn="true" />
         {/* <StatusBlock label="GNSS" sensorOn="true" /> */}
       </div>
       
