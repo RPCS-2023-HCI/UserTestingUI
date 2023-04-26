@@ -1,18 +1,17 @@
 import * as React from 'react';
-import {Grid, Typography, Paper, Stack, Box} from '@mui/material';
+import { Typography, Paper, Stack } from '@mui/material';
 
 function EnvSubTab() {
 
-  const [reading1A, setReading1A] = React.useState('N/A');
-  const [reading1B, setReading1B] = React.useState('N/A');
-  const [reading2A, setReading2A] = React.useState('N/A');
-  const [reading2B, setReading2B] = React.useState('N/A');
+  const [elpTime, setElpTime] = React.useState('N/A');
+  const [distOb1, setDistOb1] = React.useState('N/A');
+  const [distOb2, setDistob2] = React.useState('N/A');
 
   return ( 
-    <Grid container spacing={3}>
-      <Grid item xs={12}>
+    <Stack direction='row' spacing={3}>
         <Paper
           sx={{
+            minWidth: '30vw',
             p: 2,
             display: 'flex',
             flexDirection: 'column',
@@ -21,15 +20,13 @@ function EnvSubTab() {
         >
             <Typography variant="h6">Track Sensor Readings</Typography>
             <br/>
-            Ultrasonic Sensor 1-A: {reading1A} in <br/>
-            Ultrasonic Sensor 1-B: {reading1B} in <br/>
-            Ultrasonic Sensor 2-A: {reading2A} in<br/>
-            Ultrasonic Sensor 2-B: {reading2B} in<br/>
+            Elapsed Time: {elpTime} s <br/>
+            Distance to Obstacle 1: {distOb1} in <br/>
+            Distance to Obstacle 2: {distOb2} in <br/>
         </Paper>
-      </Grid>
-      <Grid item xs={12}>
         <Paper
           sx={{
+            minWidth: '30vw',
             p: 2,
             display: 'flex',
             flexDirection: 'column',
@@ -37,10 +34,8 @@ function EnvSubTab() {
           }}
         >
             <Typography variant="h6">Track Sector</Typography>
-
         </Paper>
-      </Grid>
-    </Grid>
+    </Stack>
   );
 }
 
