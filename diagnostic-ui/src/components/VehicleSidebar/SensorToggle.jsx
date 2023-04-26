@@ -28,7 +28,7 @@ export default function SensorToggle(props){
 
     
   const handleChange = (event) => {
-      let nval = event.target.value;
+      let nval = !event.target.value;
     setChecked((prev) => {
       sendMessage(JSON.stringify({topic: GROUND_ENV_CTL, data: nval ? "start" : "stop"}));
       return nval;
