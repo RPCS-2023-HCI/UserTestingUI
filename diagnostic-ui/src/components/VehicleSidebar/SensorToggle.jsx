@@ -13,7 +13,7 @@ export default function SensorToggle(props){
   });
 
     
-      useEffect(() => {
+      React.useEffect(() => {
     if (lastMessage !== null) {
       try {
         let msg = JSON.parse(lastMessage.data);
