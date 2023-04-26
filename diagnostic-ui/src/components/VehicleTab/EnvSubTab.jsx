@@ -9,7 +9,7 @@ function EnvSubTab() {
 
   const [elpTime, setElpTime] = React.useState('N/A');
   const [distOb1, setDistOb1] = React.useState('N/A');
-  const [distOb2, setDistob2] = React.useState('N/A');
+  const [distOb2, setDistOb2] = React.useState('N/A');
 
   // websocket updates
   const { sendMessage, lastMessage, readyState } = useWebSocket(wscfg.WS_URL, {
