@@ -1,5 +1,9 @@
 import * as React from 'react';
 import { Typography, Paper, Stack } from '@mui/material';
+import useWebSocket from 'react-use-websocket';
+import wscfg from '../../WebSocketConfig';
+
+const GROUND_DATA_TOPIC = 'esp32/obpub';
 
 function EnvSubTab() {
 
@@ -7,6 +11,28 @@ function EnvSubTab() {
   const [distOb1, setDistOb1] = React.useState('N/A');
   const [distOb2, setDistob2] = React.useState('N/A');
 
+  // websocket updates
+  const { sendMessage, lastMessage, readyState } = useWebSocket(wscfg.WS_URL, {
+    share: true
+  });
+
+  React.useEffect(() => {
+    if (lastMessage !== null) {
+      try {
+        let msg = JSON.parse(lastMessage.data);
+        if (msg.topic == GROUND_DATA_TOPIC) {
+          let data = JSON.parse(msg.data);
+          setElpTime((prev) => data.elapsed_time);
+          setDistOb1((prev) => data.Distance_Obs1);
+          setDistOb2((prev) => data.Distance_Obs2);
+        }
+      } catch (e) {
+        console.log("json parse error", e);
+      }
+    }
+  }, [lastMessage, setElpTime, setDistOb1, setDistOb2]);
+
+  
   return ( 
     <Stack direction='row' spacing={3}>
         <Paper
