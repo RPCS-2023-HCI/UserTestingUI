@@ -22,7 +22,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ padding: 2}}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -51,8 +51,8 @@ export default function VehicleTabs() {
   };
 
   return (
-    <Box sx={{ width: '80vw' , height: '100vh'}}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+    <Box sx={{ width: "100%"}}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider', width: "100%" }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab label="Vehicle" {...a11yProps(0)} />
           <Tab label="Environment" {...a11yProps(1)} />

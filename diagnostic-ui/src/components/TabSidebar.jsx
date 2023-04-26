@@ -66,7 +66,7 @@ export default function VerticalTabs() {
         value={value}
         onChange={handleChange}
         aria-label="Vertical Tabs"
-        sx={{ borderRight: 1, borderColor: 'divider'}}
+        sx={{ borderRight: 1, borderColor: 'divider', flexShrink: 0}}
       >
         <Tab icon={<DirectionsCarFilledIcon />} aria-label="car"{...a11yProps(0)} />
         <Tab icon={<FolderIcon />} aria-label="folder" {...a11yProps(1)} />
@@ -75,10 +75,14 @@ export default function VerticalTabs() {
 
       <TabSidebar value={value} index={0}>
         <Stack direction="row">
-          <Box sx={{ width: '15%' }}>
+          <Box 
+          sx={{ width: '200px', flexShrink: 0 }}
+          >
             <VehicleStatus/>
           </Box>
-          <Box sx={{ width: '80%' }}>
+          <Box 
+          sx={{ width: '85%', flexGrow: 1 }}
+          >
             <VehicleTabs />
           </Box>
         </Stack>
@@ -86,7 +90,7 @@ export default function VerticalTabs() {
       <TabSidebar value={value} index={1}>
         <Box sx={{ width: '100%' }}>
             <SimulationAnalysisPage />
-          </Box>
+        </Box>
       </TabSidebar>
     </Box>
   );
