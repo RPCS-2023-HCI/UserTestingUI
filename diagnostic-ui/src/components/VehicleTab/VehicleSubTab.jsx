@@ -74,10 +74,10 @@ function VehicleSubTab() {
           setAngle((prev) => data.data);
         } else if (msg.topic == VEHICLE_BATTERY_TOPIC) {
           let data = JSON.parse(msg.data);
-          setvCell1((prev) => data.vCell1);
-          setvCell2((prev) => data.vCell2);
-          setvCell3((prev) => data.vCell3);
-          setvPack((prev) => data.vPack);
+          setvCell1((prev) => data.vCell1.toFixed(2));
+          setvCell2((prev) => data.vCell2.toFixed(2));
+          setvCell3((prev) => data.vCell3.toFixed(2));
+          setvPack((prev) => data.vPack.toFixed(2));
           setiPack((prev) => data.iPack);
         }
       } catch (e) {
