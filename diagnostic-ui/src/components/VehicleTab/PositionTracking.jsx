@@ -51,15 +51,15 @@ function PositionTracking() {
             }}
             >
                 <CartesianGrid />
-                <XAxis type="number" domain={[0, 8]} dataKey="x"  unit="m" />
-                <YAxis type="number" domain={[0, 8]} dataKey="y" unit="m" />
+                <XAxis type="number" domain={[0, 6]} dataKey="x"  unit="m" />
+                <YAxis type="number" domain={[0, 6]} dataKey="y" unit="m" />
 
 
                 {/* <Tooltip cursor={{ strokeDasharray: "3 3" }} /> */}
                 <ReferenceDot x={0} y={0} r={10} fill='black'/>
-                <ReferenceDot x={0} y={7} r={10} fill='black'/>
-                <ReferenceDot x={7} y={7} r={10} fill='black'/>
-                <ReferenceDot x={7} y={0} r={10} fill='black'/>
+                <ReferenceDot x={0} y={5.5} r={10} fill='black'/>
+                <ReferenceDot x={5.5} y={5.5} r={10} fill='black'/>
+                <ReferenceDot x={5.5} y={0} r={10} fill='black'/>
                 <Scatter name="car" data={positionData} shape={<RenderDot/>}/>
             </ScatterChart>
         </ResponsiveContainer>
