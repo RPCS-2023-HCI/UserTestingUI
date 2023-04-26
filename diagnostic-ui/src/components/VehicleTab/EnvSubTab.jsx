@@ -22,9 +22,17 @@ function EnvSubTab() {
         let msg = JSON.parse(lastMessage.data);
         if (msg.topic == GROUND_DATA_TOPIC) {
           let data = JSON.parse(msg.data);
-          setElpTime((prev) => data.elapsed_time);
-          setDistOb1((prev) => data.Distance_Obs1);
-          setDistOb2((prev) => data.Distance_Obs2);
+          setElpTime((prev) => (parseFloat(data.elapsed_time)/1000).toFixed(2));
+          setDistOb1((prev) => {
+            let dist = parseFloat(data.Distance_Obs1);
+            if (dist > 300) return "(far)";
+            else return dist.toFixed(2)
+          });
+          setDistOb2((prev) => {
+            let dist = parseFloat(data.Distance_Obs2);
+            if (dist > 300) return "(far)";
+            else return dist.toFixed(2)
+          });
         }
       } catch (e) {
         console.log("json parse error", e);
