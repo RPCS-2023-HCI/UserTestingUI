@@ -7,6 +7,7 @@ import CameraRecording from './CameraRecording';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
+import DownloadIcon from '@mui/icons-material/Download';
 import Alert from '@mui/material/Alert';
 import Autocomplete from '@mui/material/Autocomplete';
 import Card from '@mui/material/Card';
@@ -121,6 +122,13 @@ function SimulationAnalysisPage() {
         setCompareId(input);
     }
 
+    const downloadData = () => {
+        var link = document.createElement("a");
+        link.download = "blockchain_results.txt";
+        link.href = "https://github.com/RPCS-2023-HCI/UserTestingUI/files/11328711/result.txt";
+        link.click();
+    }
+
     return (
         <Container>
             <Col>
@@ -204,6 +212,24 @@ function SimulationAnalysisPage() {
                         </Card>
                     </Container>
                 )}
+            </Col>
+            <Col>
+                <Card style={{width: '91vw', marginTop: '3vh', paddingBottom: '2em', borderRadius: '10px'}}>
+                    <Row style={{width: '91vw', display: 'flex', marginTop: '2.5vh'}}>
+                        <Typography variant="button" style={{marginLeft: '1.5vw', fontSize: '1.2vw', color: '#1870d5'}}>
+                            {"Blockchain execution results "}
+                        </Typography>
+                    </Row>
+                    <Row style={{width: '91vw', display: 'flex', marginTop: '2.5vh'}}>
+                        <Button 
+                            style={{marginLeft: '3vw', width: '10vw', height: '5vh', marginTop: '3vh'}}
+                            onClick={downloadData}
+                        >
+                            <DownloadIcon />
+                            <text style={{marginLeft: '0.5vw', fontSize: '1vw'}}>Download</text>
+                        </Button>
+                    </Row>
+                </Card>
             </Col>
         </Container>
     );
